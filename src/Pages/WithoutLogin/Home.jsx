@@ -1,8 +1,13 @@
+import Banner from "../../Components/Baneer/Banner";
+import Packages from "../../Shared/Packages";
+import About from "./About/About";
 
 const Home = () => {
     return (
         <div>
-            <h2>This is home</h2>
+            <Banner></Banner>
+            <About></About>
+            <Packages></Packages>
         </div>
     );
 };

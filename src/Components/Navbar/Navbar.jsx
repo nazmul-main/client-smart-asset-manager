@@ -5,26 +5,26 @@ import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
 
-    const user = true;
+    const user = false;
 
     const navLink = <>
 
 
-        <li><NavLink className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-[#EEFF25] font-semibold " : "hover:text-[#EEFF25] font-semibold text-[#FFF]"}> HOME</NavLink>
+        <li><NavLink to='/home' className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}> HOME</NavLink>
         </li>
-        <li><NavLink to="/menu" className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-[#EEFF25] font-semibold " : "hover:text-[#EEFF25] font-semibold text-[#FFF]"}> Join As Employe</NavLink>
+        <li><NavLink to="/joinEmploye" className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}> Join As Employe</NavLink>
         </li>
-        <li><NavLink to="/contact" className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-[#EEFF25] font-semibold " : "hover:text-[#EEFF25] font-semibold text-[#FFF]"}>Join as HR/Admin</NavLink>
+        <li><NavLink to="/joinAdminHR" className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}>Join as HR/Admin</NavLink>
         </li>
     </>
 
 
     return (
         <div>
-            <div className="navbar fixed z-10 bg-opacity-20 bg-black text-w">
+            <div className="navbar fixed z-10 bg-opacity-50 bg-black text-w">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -46,9 +46,9 @@ const Navbar = () => {
                     {
                         user ? <>
                             <span className="bg-white rounded-l-full px-2 py-1 text-violet-600 font-semibold ">Display Name</span>
-                            <button className="btn btn-sm ml-4 btn-primary">Sign Out</button>
+                            <button className="btn btn-sm ml-4 bg-[#25a8ff]">Sign Out</button>
                         </> : <>
-                            <Link to='/signin'>SignIn</Link></>
+                            <Link to='/signin' className="btn btn-sm ml-4 bg-[#25a8ff]">SignIn</Link></>
                     }
 
                 </div>
