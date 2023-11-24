@@ -1,12 +1,13 @@
+import { Link } from "react-router-dom";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 
 const JoinAsARAdmin = () => {
     return (
         <div>
-            <section className="bg-gray-200 py-12   ">
-                <div className=" flex  items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-
+            <section className="bg-gray-200    ">
+                <div className=" flex flex-col  items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+                <Link to='/home' className=" my-2 py-2 px-3 rounded-md bg-green-500">Back To Home </Link>
                     <div className="md:w-1/2  rounded-lg shadow dark:border md:mt-0  xl:p-0 bg-blue-50 ">
                         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                             <h1 className="text-xl text-center font-bold leading-tight tracking-tight  md:text-2xl ">
@@ -16,22 +17,22 @@ const JoinAsARAdmin = () => {
                                 <div className="md:flex gap-5">
                                     <div className="w-full">
                                         <label className="block mb-2 text-sm font-medium ">Full Name</label>
-                                        <input type="email" name="email" id="email" className="   sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5     dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="" />
+                                        <input type="email" name="email" id="email" className="   sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5     dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Email" required="" />
                                     </div>
                                     <div className="w-full">
                                         <label className="block mb-2 text-sm font-medium ">Company Name</label>
-                                        <input type="email" name="email" id="email" className="  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5     dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="" />
+                                        <input type="email" name="email" id="email" className="  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5     dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Email" required="" />
                                     </div>
                                 </div>
                                 <div className="md:flex gap-5">
                                     <div className="w-full">
                                         <label className="block mb-2 text-sm font-medium ">Company Logo</label>
-                                        <input type="email" name="email" id="email" className="  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5     dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="" />
+                                        <input type="email" name="email" id="email" className="  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5     dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Email" required="" />
                                     </div>
 
                                     <div className="w-full">
                                         <label className="block mb-2 text-sm font-medium ">Email</label>
-                                        <input type="email" name="email" id="email" className="  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5     dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="" />
+                                        <input type="email" name="email" id="email" className="  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5     dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Email" required="" />
                                     </div>
                                 </div>
                                 <div  className="flex gap-5">
