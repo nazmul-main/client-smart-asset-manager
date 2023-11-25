@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, } from "firebase/auth";
 import { app } from "../Config/firebase.config";
 // import { auth } from "../Config/firebase.config";
 
@@ -23,23 +23,24 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, googleprovider);
     }
 
-    // sign up
-    const createUser = (email, password) => {
-        setLoading(true)
-        return createUserWithEmailAndPassword(auth, email, password)
+    /* create user */
+    const createUser = (eamil, password) => {
+        setLoading(true);
+        return createUserWithEmailAndPassword(auth, eamil, password)
     }
-
     // sign IN 
     const signin = (email, password) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
-    const handleUpdateProfile = (name, photo) => {
+    /* Update Pofile */
+    const updateUaserPofile = (name, photo) => {
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photo
-          })
-    }
+        })
+
+    };
 
     const logout = () => {
         setLoading(true)
@@ -48,16 +49,16 @@ const AuthProvider = ({ children }) => {
 
 
 
-   /* Currrent user / using observer */
-   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-        setUser(user);
-        setLoading(false)
-    });
-}, []);
+    /* Currrent user / using observer */
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            setUser(user);
+            setLoading(false)
+        });
+    }, []);
 
-   
-    
+
+
 
 
 
@@ -71,7 +72,7 @@ const AuthProvider = ({ children }) => {
         logout,
         user,
         loading,
-        handleUpdateProfile
+        updateUaserPofile
 
     }
 

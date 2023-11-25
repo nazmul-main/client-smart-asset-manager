@@ -1,19 +1,51 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const SignIn = () => {
+
+    const { signIn } = useAuth();
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from =  location.state?.from?.pathname || '/'
+
+    const handleSignIn = e => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(email, password);
+        signIn(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "signin  successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                  navigate(from, {replace:true});
+            })
+    };
+    
+
+
+
     return (
         <div>
             <section className="bg-gray-200  max-h-screen ">
                 <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                    <Link to='/home' className=" my-4 py-2 px-3 rounded-md bg-green-500">Back To Home </Link>
+                    <Link to='/' className=" my-4 py-2 px-3 rounded-md bg-green-500">Back To Home </Link>
 
                     <div className="w-full  rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 bg-blue-50 ">
                         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                             <h1 className="text-xl text-center font-bold leading-tight tracking-tight  md:text-2xl ">
                                 Join As Employe
                             </h1>
-                            <form className="space-y-4 md:space-y-6" action="#">
+                            <form onSubmit={handleSignIn} className="space-y-4 md:space-y-6" action="#">
                                
                                 <div>
                                     <label className="block mb-2 text-sm font-medium ">Email</label>
