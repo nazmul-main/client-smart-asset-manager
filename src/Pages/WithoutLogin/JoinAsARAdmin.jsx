@@ -5,7 +5,7 @@ import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 const JoinAsARAdmin = () => {
     return (
         <div>
-            <section className="bg-gray-200    ">
+            <section className="bg-gray-200 ">
                 <div className=" flex flex-col  items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <Link to='/home' className=" my-2 py-2 px-3 rounded-md bg-green-500">Back To Home </Link>
                     <div className="md:w-1/2  rounded-lg shadow dark:border md:mt-0  xl:p-0 bg-blue-50 ">

@@ -1,15 +1,18 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
-import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
-import { auth } from "../Config/firebase.config";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { app } from "../Config/firebase.config";
+// import { auth } from "../Config/firebase.config";
 
 export const AuthContext = createContext(null)
 
 const googleprovider = new GoogleAuthProvider();
+const auth = getAuth(app)
 
 const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState({});
+    console.log(user);
     const [loading, setLoading] = useState(true)
 
 
@@ -44,13 +47,14 @@ const AuthProvider = ({ children }) => {
     }
 
 
-    /* Currrent user / using observer */
-    useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            setUser(user);
-            setLoading(false)
-        });
-    }, []);
+
+   /* Currrent user / using observer */
+   useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+        setUser(user);
+        setLoading(false)
+    });
+}, []);
 
    
     

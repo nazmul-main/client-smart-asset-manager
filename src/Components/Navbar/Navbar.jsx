@@ -6,6 +6,7 @@ import { Link, NavLink } from "react-router-dom";
 const Navbar = () => {
 
     const user = false;
+    // const admin = true;
 
     const navLink = <>
 
@@ -20,6 +21,53 @@ const Navbar = () => {
             isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}>Join as HR/Admin</NavLink>
         </li>
     </>
+
+    // const adminLinks = (
+    //     <>
+    //         <li>
+    //             <NavLink to='/home' className={({ isActive, isPending }) =>
+    //                 isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}> HOME
+    //             </NavLink>
+    //         </li>
+    //         <li>
+    //             <NavLink to="/joinEmploye" className={({ isActive, isPending }) =>
+    //                 isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}> Join As Employe
+    //             </NavLink>
+    //         </li>
+    //         <li>
+    //             <NavLink to="/joinAdminHR" className={({ isActive, isPending }) =>
+    //                 isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}>Join as HR/Admin
+    //             </NavLink>
+    //         </li>
+    //         <li>
+    //             <NavLink to="/admin" className={({ isActive, isPending }) =>
+    //                 isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}>ADMINAdmin
+    //             </NavLink>
+    //         </li>
+    //     </>
+    // );
+
+    // const userLinks = (
+    //     <>
+    //         <li>
+    //             <NavLink to='/home' className={({ isActive, isPending }) =>
+    //                 isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}> HOME
+    //             </NavLink>
+    //         </li>
+    //         <li>
+    //             <NavLink to="/joinEmploye" className={({ isActive, isPending }) =>
+    //                 isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}> Join As Employe
+    //             </NavLink>
+    //         </li>
+    //         <li>
+    //             <NavLink to="/joinAdminHR" className={({ isActive, isPending }) =>
+    //                 isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}>Join as HR/Admin
+    //             </NavLink>
+    //         </li>
+    //     </>
+    // );
+
+
 
 
     return (
@@ -41,7 +89,7 @@ const Navbar = () => {
                         {navLink}
                     </ul>
                 </div>
-                
+
                 <div className="navbar-end">
                     {
                         user ? <>
