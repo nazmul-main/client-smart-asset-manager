@@ -22,13 +22,13 @@ const Navbar = () => {
 
 
         <li><NavLink to='/' className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}> HOME</NavLink>
+            isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}> HOME</NavLink>
         </li>
         <li><NavLink to="/joinEmploye" className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}> Join As Employe</NavLink>
+            isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}> Join As Employe</NavLink>
         </li>
         <li><NavLink to="/joinAdminHR" className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}>Join as HR/Admin</NavLink>
+            isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}>Join as HR/Admin</NavLink>
         </li>
     </>
 
@@ -36,22 +36,22 @@ const Navbar = () => {
         <>
             <li>
                 <NavLink to='/home' className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}> HOME
+                    isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}> HOME
                 </NavLink>
             </li>
             <li>
                 <NavLink to="/joinEmploye" className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}> Join As Employe
+                    isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}> Join As Employe
                 </NavLink>
             </li>
             <li>
                 <NavLink to="/joinAdminHR" className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}>Join as HR/Admin
+                    isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}>Join as HR/Admin
                 </NavLink>
             </li>
             <li>
                 <NavLink to="/admin" className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}>ADMINAdmin
+                    isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}>ADMINAdmin
                 </NavLink>
             </li>
         </>
@@ -59,39 +59,39 @@ const Navbar = () => {
 
     const employeeNavlink = (
         <>
-            <li>
-                <NavLink to='/home' className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}> HOME
+            {/* <li>
+                <NavLink to='employeHome' className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}> HOME
                 </NavLink>
             </li>
             <li>
                 <NavLink to="/joinEmploye" className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}> My Team
+                    isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}> My Team
                 </NavLink>
             </li>
             <li>
                 <NavLink to="/joinAdminHR" className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}>My Assets
+                    isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}>My Assets
                 </NavLink>
             </li>
             <li>
                 <NavLink to="/joinAdminHR" className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}> Request for an Asset
+                    isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}> Request for an Asset
 
                 </NavLink>
             </li>
             <li>
                 <NavLink to="/joinAdminHR" className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}> Make a Custom Request
+                    isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}> Make a Custom Request
 
                 </NavLink>
             </li>
             <li>
                 <NavLink to="/joinAdminHR" className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-[#25a8ff] font-semibold " : "hover:text-[#25a8ff] font-semibold text-[#FFF]"}>  Profile
+                    isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}>  Profile
 
                 </NavLink>
-            </li>
+            </li> */}
         </>
     );
 
@@ -102,7 +102,7 @@ const Navbar = () => {
 
     return (
         <div>
-            <div className="navbar fixed z-10 bg-opacity-50 bg-black text-w">
+            <div className="navbar fixed z-10 bg-opacity-50 bg-black ">
                 <div className="navbar-start">
                     <div className="dropdown ">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -129,10 +129,10 @@ const Navbar = () => {
                     {
                         user ? <>
                             <span className="bg-white rounded-l-full px-2 py-1 text-violet-600 font-semibold ">{user?.displayName}</span>
-                            <img className="w-10 rounded-full ml-4 h-10" src={user.photoURL ? user.photoURL : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhyhj1gUUYu1c8817GfPwApJbYzW9lJdjSXQ&usqp=CAU"} alt={user.displayName} />
-                            <button onClick={handlelogOut} className="btn btn-sm ml-4 bg-[#25a8ff]">Sign Out</button>
+                            <img className="w-9 rounded-full ml-4 h-9" src={user.photoURL ? user.photoURL : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhyhj1gUUYu1c8817GfPwApJbYzW9lJdjSXQ&usqp=CAU"} alt={user.displayName} />
+                            <button onClick={handlelogOut} className="btn btn-sm ml-4 bg-[#2b914a]">Sign Out</button>
                         </> : <>
-                            <Link to='/signin' className="btn btn-sm ml-4 bg-[#25a8ff]">SignIn</Link></>
+                            <Link to='/signin' className="btn btn-sm ml-4 bg-[#2b914a]">SignIn</Link></>
                     }
 
                 </div>

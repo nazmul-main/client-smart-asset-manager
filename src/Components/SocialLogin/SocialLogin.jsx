@@ -21,7 +21,7 @@ const SocialLogin = () => {
                 showConfirmButton: false,
                 timer: 1500
               });
-            navigate(location?.state ? location.state : '/')
+            navigate(location?.state ? location.state : '/employeHome')
             
         })
         .catch(err => {

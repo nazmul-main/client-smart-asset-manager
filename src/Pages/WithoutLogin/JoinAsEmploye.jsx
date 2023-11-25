@@ -30,7 +30,7 @@ const JoinAsEmploye = () => {
                             showConfirmButton: false,
                             timer: 1500,
                         })
-                        navigate('/')
+                        navigate('/employeHome  ')
                             .catch((err) => {
                                 console.log(err);
                             });
