@@ -1,12 +1,24 @@
 
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 
 
 const Navbar = () => {
 
-    const user = false;
+    const { user , logout} = useAuth()
     // const admin = true;
+
+
+    // console.log(cart);
+
+    const handlelogOut = () => {
+        logout()
+            .then(() => { })
+            .catch(err => {
+                console.log(err);
+            })
+    }
 
     const navLink = <>
 
@@ -93,8 +105,9 @@ const Navbar = () => {
                 <div className="navbar-end">
                     {
                         user ? <>
-                            <span className="bg-white rounded-l-full px-2 py-1 text-violet-600 font-semibold ">Display Name</span>
-                            <button className="btn btn-sm ml-4 bg-[#25a8ff]">Sign Out</button>
+                            <span className="bg-white rounded-l-full px-2 py-1 text-violet-600 font-semibold ">{user?.displayName}</span>
+                            <img className="w-10 rounded-full ml-4 h-10" src={user.photoURL ? user.photoURL : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhyhj1gUUYu1c8817GfPwApJbYzW9lJdjSXQ&usqp=CAU"} alt={user.displayName} />
+                            <button onClick={handlelogOut} className="btn btn-sm ml-4 bg-[#25a8ff]">Sign Out</button>
                         </> : <>
                             <Link to='/signin' className="btn btn-sm ml-4 bg-[#25a8ff]">SignIn</Link></>
                     }
