@@ -98,6 +98,8 @@ const Navbar = () => {
 
 
 
+
+
     return (
         <div>
             <div className="navbar fixed z-10 bg-opacity-50 bg-black text-w">
