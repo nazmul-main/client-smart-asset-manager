@@ -5,7 +5,7 @@ const AdminHr = () => {
         <div>
             <div className="flex max-w-screen mx-auto  gap">
 
-                <div className="w-2/12 min-h-screen bg-[#2b914a]">
+                <div className="md:w-2/12 w-1/12 min-h-screen bg-[#2b914a]">
                     <h2 className="text-3xl font-semibold">HR/Admin</h2>
                     <ul className="menu p-4">
 
