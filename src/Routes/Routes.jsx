@@ -20,6 +20,7 @@ import CoustomReqList from "../Pages/AdminHR/CoustomReqList";
 import MyEmployeeList from "../Pages/AdminHr/MyEmployeeList";
 import AddAnEmployee from "../Pages/AdminHR/AddAnEmployee";
 import AdminHrProfile from "../Pages/AdminHR/AdminHrProfile";
+import AsssetUpdateFrom from "../Pages/AdminHr/AsssetUpdateFrom";
 
 
 
@@ -101,6 +102,13 @@ export const router = createBrowserRouter([
                 path: 'assetList',
                 element: <AssetList></AssetList>
             },
+            /* Update asset */
+            {
+                path: 'assetUpdate/:id',
+                element: <AsssetUpdateFrom></AsssetUpdateFrom>,
+                loader: ({ params }) => fetch(`http://localhost:5007/api/v1/update/assets/${params._id}`)
+
+            },
 
             {
                 path: 'addanAsset',
@@ -128,7 +136,9 @@ export const router = createBrowserRouter([
             {
                 path: 'AdminHrProfile',
                 element: <AdminHrProfile></AdminHrProfile>
-            }
+            },
+
+           
             
         ],
     },

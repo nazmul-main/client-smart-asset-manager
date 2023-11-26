@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react';
+import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
 import { } from "react-icons/fa";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { Link, useLoaderData } from 'react-router-dom';
 
 const AssetList = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosPublic = useAxiosPublic()
     const [data, setData] = useState('');
+    const data1 = useLoaderData()
+console.log(data1);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -63,23 +67,31 @@ const AssetList = () => {
                             <td className="px-4 py-4 font-medium text-gray-900 whitespace-nowrap ">
                                 <img className='w-12 h-12' src={asset.image} alt="" />
                             </td>
-                            <td className="px-4  py-4 font-medium text-gray-900 whitespace-nowrap ">
+                            <td className="px-4 md:text-[16px]  py-4 font-medium text-gray-900 whitespace-nowrap ">
                                 {asset.name}
                             </td>
-                            <td className="px-4 py-4">
+                            <td className="px-4 md:text-[16px] py-4">
                                 {asset.type}
                             </td>
-                            <td className="px-4 py-4">
+                            <td className="px-4 md:text-[16px] py-4">
                                 {asset.quantity}
                             </td>
-                            <td className="px-4 py-4">
+                            <td className="px-4 md:text-[16px] py-4">
                                 {asset.currentDate}
                             </td>
-                            <td className="px-4 py-4">
-                                <button className="font-medium text-blue-600  hover:underline"></button>
+                            <td className="px-4 md:text-[16px] py-4">
+
+                                <Link to={`adminHome/assetUpdate/${asset?._id}`}> 
+                                    <button
+                                        className="btn hover:font-semibold text-[16px] hover:text-xl btn-md hover:bg-[#205427db] bg-[#23611b] py-2 ">
+                                        < FaRegEdit className=" text-white   "> </FaRegEdit>
+                                    </button></Link>
                             </td>
                             <td className="px-4 py-4">
-                                <button className="font-medium text-blue-600  hover:underline"></button>
+                                <button
+                                    className="btn text-[16px] hover:text-xl md:btn-md btn-sm hover:bg-[#b91c1cdb] bg-[#f13838] py-2 ">
+                                    <FaTrashAlt FaRegEdit className=" text-white "> </FaTrashAlt>
+                                </button>
                             </td>
                         </tr>
                     ))}
