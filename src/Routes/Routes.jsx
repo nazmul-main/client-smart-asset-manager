@@ -26,14 +26,14 @@ import AsssetUpdateFrom from "../Pages/AdminHr/AsssetUpdateFrom";
 
 export const router = createBrowserRouter([
     {
-        path:'/',
+        path: '/',
         element: <MainLayout></MainLayout>,
         children: [
             {
                 path: '/',
                 element: <Home></Home>
             },
-            
+
         ]
     },
 
@@ -42,7 +42,7 @@ export const router = createBrowserRouter([
     {
         path: '/joinEmploye',
         element: <JoinAsEmploye></JoinAsEmploye>
-        
+
     },
 
     {
@@ -67,7 +67,7 @@ export const router = createBrowserRouter([
             {
                 path: 'requestAsset',
                 element: <RequestAsset></RequestAsset>
-            } ,
+            },
 
             {
                 path: 'makeCoustmRequest',
@@ -78,7 +78,7 @@ export const router = createBrowserRouter([
                 path: 'employeProfile',
                 element: <EmployeProfile></EmployeProfile>
             }
-            
+
         ],
     },
 
@@ -104,12 +104,10 @@ export const router = createBrowserRouter([
             },
             /* Update asset */
             {
-                path: 'assetUpdate/:id',
+                path: 'update-assets/:id',
                 element: <AsssetUpdateFrom></AsssetUpdateFrom>,
-                loader: ({ params }) => fetch(`http://localhost:5007/api/v1/update/assets/${params._id}`)
-
+                loader: ({ params }) => fetch(`http://localhost:5001/api/v1/assets/update-assets/${params.id}`)
             },
-
             {
                 path: 'addanAsset',
                 element: <AddAnAsset></AddAnAsset>
@@ -118,7 +116,7 @@ export const router = createBrowserRouter([
             {
                 path: 'allRequest',
                 element: <AllRequest></AllRequest>
-            } ,
+            },
 
             {
                 path: 'coustmRequestList',
@@ -138,15 +136,15 @@ export const router = createBrowserRouter([
                 element: <AdminHrProfile></AdminHrProfile>
             },
 
-           
-            
+
+
         ],
     },
 
 
 
     {
-     path: '/signin',
-     element: <SignIn></SignIn>
+        path: '/signin',
+        element: <SignIn></SignIn>
     }
 ])

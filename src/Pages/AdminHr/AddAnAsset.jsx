@@ -83,21 +83,21 @@ const AddAnAsset = () => {
                             </div>
                             <div>
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-                                    Product Name
+                                    Product Image
                                 </label>
                                 <input
                                     {...register("image", { required: true })}
                                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-50 borde"
                                     // name="title"
                                     type="text"
-                                    placeholder="NaImage URL"
+                                    placeholder="Image URL"
                                     required
                                 />
                                 {errors.image && <span className="text-red-600">Name is required</span>}
                             </div>
                             <div>
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-                                    Product Image
+                                    Product Quantity
 
                                 </label>
                                 <input
@@ -117,9 +117,13 @@ const AddAnAsset = () => {
                                     id="countries" className="bg-gray-50 border border-gray-300  rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   ">
                                     <option selected>Choose a Type</option>
                                     <option value="Electronic">Electronic </option>
-                                    <option value="Laptops">Laptops</option>
-                                    <option value="Laptops">Laptops</option>
-                                    <option value="Laptops">Laptops</option>
+                                    <option value="Furniture">Furniture</option>
+                                    <option value="IT Equipment">IT Equipment</option>
+                                    <option value="Office Supplies">Office Supplies</option>
+                                    <option value="Surveillance">Surveillance</option>
+                                    <option value="Safety Equipment">Safety Equipment</option>
+                                    <option value="Communication Equipment">Communication Equipment</option>
+                                    <option value="Power Supplies">Power Supplies</option>
                                 </select>
                                 {errors.type && <span className="text-red-600">Name is required</span>}
 
