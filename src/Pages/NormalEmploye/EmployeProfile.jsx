@@ -1,5 +1,5 @@
 
-const ProFile = () => {
+const EmployeProfile = () => {
     return (
         <div>
             <h1>Profile</h1>
@@ -7,4 +7,4 @@ const ProFile = () => {
     );
 };
 
-export default ProFile;
+export default EmployeProfile;

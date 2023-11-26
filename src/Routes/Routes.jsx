@@ -6,6 +6,11 @@ import JoinAsARAdmin from "../Pages/WithoutLogin/JoinAsARAdmin";
 import SignIn from "../Pages/WithoutLogin/SignIn";
 import Employe from "../Pages/NormalEmploye/Employe";
 import EmployeHome from "../Pages/NormalEmploye/EmployeHome";
+import MyAsset from "../Pages/NormalEmploye/MyAsset";
+import MyTeam from "../Pages/NormalEmploye/MyTeam";
+import RequestAsset from "../Pages/NormalEmploye/RequestAsset";
+import MakeCoustomRequest from "../Pages/NormalEmploye/MakeCoustomRequest";
+import EmployeProfile from "../Pages/NormalEmploye/EmployeProfile";
 
 
 
@@ -37,7 +42,33 @@ export const router = createBrowserRouter([
             {
                 path: '/employeHome',
                 element: <EmployeHome></EmployeHome>
+            },
+
+            {
+                path: 'myTeam',
+                element: <MyTeam></MyTeam>
+            },
+
+            {
+                path: 'myAsset',
+                element: <MyAsset></MyAsset>
+            },
+
+            {
+                path: 'requestAsset',
+                element: <RequestAsset></RequestAsset>
+            } ,
+
+            {
+                path: 'makeCoustmRequest',
+                element: <MakeCoustomRequest></MakeCoustomRequest>
+            },
+
+            {
+                path: 'employeProfile',
+                element: <EmployeProfile></EmployeProfile>
             }
+            
         ],
     },
 
