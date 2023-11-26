@@ -11,6 +11,15 @@ import MyTeam from "../Pages/NormalEmploye/MyTeam";
 import RequestAsset from "../Pages/NormalEmploye/RequestAsset";
 import MakeCoustomRequest from "../Pages/NormalEmploye/MakeCoustomRequest";
 import EmployeProfile from "../Pages/NormalEmploye/EmployeProfile";
+import AdminHr from "../Pages/AdminHR/AdminHr";
+import AdminHrHome from "../Pages/AdminHr/AdminHrHome";
+import AssetList from "../Pages/AdminHR/AssetList";
+import AddAnAsset from "../Pages/AdminHR/AddAnAsset";
+import AllRequest from "../Pages/AdminHR/AllRequest";
+import CoustomReqList from "../Pages/AdminHR/CoustomReqList";
+import MyEmployeeList from "../Pages/AdminHr/MyEmployeeList";
+import AddAnEmployee from "../Pages/AdminHR/AddAnEmployee";
+import AdminHrProfile from "../Pages/AdminHR/AdminHrProfile";
 
 
 
@@ -78,6 +87,54 @@ export const router = createBrowserRouter([
         path: '/joinAdminHR',
         element: <JoinAsARAdmin></JoinAsARAdmin>
     },
+
+    {
+        path: '/adminHome',
+        element: <AdminHr></AdminHr>,
+        children: [
+            {
+                path: '/adminHome',
+                element: <AdminHrHome></AdminHrHome>
+            },
+
+            {
+                path: 'assetList',
+                element: <AssetList></AssetList>
+            },
+
+            {
+                path: 'addanAsset',
+                element: <AddAnAsset></AddAnAsset>
+            },
+
+            {
+                path: 'allRequest',
+                element: <AllRequest></AllRequest>
+            } ,
+
+            {
+                path: 'coustmRequestList',
+                element: <CoustomReqList></CoustomReqList>
+            },
+            {
+                path: 'myEmployeeList',
+                element: <MyEmployeeList></MyEmployeeList>
+            },
+            {
+                path: 'addAnEmployee',
+                element: <AddAnEmployee></AddAnEmployee>
+            },
+
+            {
+                path: 'AdminHrProfile',
+                element: <AdminHrProfile></AdminHrProfile>
+            }
+            
+        ],
+    },
+
+
+
     {
      path: '/signin',
      element: <SignIn></SignIn>
