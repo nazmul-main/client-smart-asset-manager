@@ -1,8 +1,10 @@
+import MyCoustomRequest from "./MyCoustomRequest";
 
 const EmployeHome = () => {
     return (
-        <div>
-            <h2>asdfasdf HomeemployeHome</h2>
+        <div className="max-w-screen-xl mx-auto px-4">
+           <MyCoustomRequest/>
+            
         </div>
     );
 };

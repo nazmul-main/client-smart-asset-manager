@@ -1,5 +1,22 @@
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const MakeCoustomRequest = () => {
+    const axiosPublic = useAxiosPublic()
+
+    const Status = 'Pending'
+    /* Find Current date */
+    const date = new Date();
+    console.log(date);
+
+    const currentYear = date.getFullYear().toString();
+    const lastTwoDigits = currentYear.slice(2);
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    const currentDate = `${day}-${month}-${lastTwoDigits}`;
+    console.log(currentDate);
+
+
 
     const handleCustomRequest = (e) => {
         e.preventDefault();
@@ -10,19 +27,37 @@ const MakeCoustomRequest = () => {
         const assetImage = form.assetImage.value;
         const whyNeed = form.whyNeed.value;
         const additionalInfo = form.additionalInfo.value;
-        console.log(assetName,  additionalInfo, assetType, assetImage, whyNeed);
+        console.log(assetName,  additionalInfo, assetType, assetImage, whyNeed, price);
 
-        const updatedAsset = {
+        const rqpAsset = {
             assetName: assetName,
             assetType: assetType,
             price: price,
-             
             additionalInfo: additionalInfo,
             assetImage: assetImage,
             whyNeed: whyNeed,
+            currentDate: currentDate,
+            Status: Status
         };
 
-        console.log(updatedAsset);
+        console.log(rqpAsset);
+
+        //  Send to Backend
+         axiosPublic.post('/coustom-assets', rqpAsset, )
+         .then(res => {
+             if (res?.data?.insertedId) {
+                 Swal.fire({
+                     icon: 'success',
+                     title: 'Well done',
+                     text: 'Your application was successful',
+                     footer: '<a href="">Thank you</a>'
+                 });
+             }
+             console.log(res.data);
+         })
+         .catch(error => {
+             console.log(error);
+         });
 
     }
 
@@ -42,7 +77,7 @@ const MakeCoustomRequest = () => {
 
                         <div className="mb-4 w-full">
                             <label className="block text-sm font-medium text-gray-600">Price</label>
-                            <input type="text" id="price" name="price" className="mt-1 p-2 w-full border rounded-md" />
+                            <input   type="text" id="price" name="price" className="mt-1 p-2 w-full border rounded-md" />
                         </div>
                     </div>
 
@@ -64,7 +99,7 @@ const MakeCoustomRequest = () => {
 
                         <div className="mb-4 w-full">
                             <label className="block text-sm font-medium text-gray-600">Asset Image</label>
-                            <input type="text" id="price" name="assetImage" className="mt-1 p-2 w-full border rounded-md" />
+                            <input type="text" id="assetImage" name="assetImage" className="mt-1 p-2 w-full border rounded-md" />
                         </div>
                     </div>
 

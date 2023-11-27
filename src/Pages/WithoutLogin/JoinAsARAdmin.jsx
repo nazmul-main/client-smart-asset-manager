@@ -65,7 +65,7 @@ const JoinAsARAdmin = () => {
                                             {...register("coName", { required: true })}
                                             name="coName"
                                             className="py-3 px-3 w-full"
-                                            placeholder="Email" />
+                                            placeholder=" Company Name" />
                                         {errors.coName && <span className="text-red-600">Name is required</span>}
                                     </div>
                                 </div>

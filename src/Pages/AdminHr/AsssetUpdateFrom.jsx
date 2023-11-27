@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 // import Swal from "sweetalert2";
 
@@ -7,6 +7,7 @@ const AsssetUpdateFrom = () => {
 
     const assetdData = useLoaderData()
     console.log(assetdData._id);
+    const navigate = useNavigate()
 
     /* Make update */
     const handleUpdate = (e) => {
@@ -46,6 +47,7 @@ const AsssetUpdateFrom = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                navigate('/adminHome/assetList')
             });
     };
 
@@ -110,14 +112,8 @@ const AsssetUpdateFrom = () => {
 
                                         id="countries" name="type" className="bg-gray-50 border border-gray-300  rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   ">
                                         <option selected>Choose a Type</option>
-                                        <option value="Electronic">Electronic </option>
-                                        <option value="Furniture">Furniture</option>
-                                        <option value="IT Equipment">IT Equipment</option>
-                                        <option value="Office Supplies">Office Supplies</option>
-                                        <option value="Surveillance">Surveillance</option>
-                                        <option value="Safety Equipment">Safety Equipment</option>
-                                        <option value="Communication Equipment">Communication Equipment</option>
-                                        <option value="Power Supplies">Power Supplies</option>
+                                        <option value="Returnable">Returnable </option>
+                                        <option value="Non-returnable"> Non-returnable </option>
                                     </select>
 
 
