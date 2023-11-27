@@ -29,7 +29,7 @@ const JoinAsARAdmin = () => {
                             showConfirmButton: false,
                             timer: 1500,
                         })
-                        navigate('/adminHome')
+                        navigate('/payment')
                             .catch((err) => {
                                 console.log(err);
                             });

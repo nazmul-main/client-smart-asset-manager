@@ -21,6 +21,7 @@ import MyEmployeeList from "../Pages/AdminHr/MyEmployeeList";
 import AddAnEmployee from "../Pages/AdminHR/AddAnEmployee";
 import AdminHrProfile from "../Pages/AdminHR/AdminHrProfile";
 import AsssetUpdateFrom from "../Pages/AdminHr/AsssetUpdateFrom";
+import Payment from "../Pages/AdminHr/Payment/Payment";
 
 
 
@@ -82,6 +83,11 @@ export const router = createBrowserRouter([
         ],
     },
 
+    /*  Payment */
+    {
+        path: 'payment',
+        element: <Payment></Payment>
+    },
 
     /* Join HR/Admin */
     {
@@ -93,6 +99,7 @@ export const router = createBrowserRouter([
         path: '/adminHome',
         element: <AdminHr></AdminHr>,
         children: [
+           
             {
                 path: '/adminHome',
                 element: <AdminHrHome></AdminHrHome>
