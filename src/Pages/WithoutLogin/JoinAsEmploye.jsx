@@ -3,8 +3,10 @@ import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import { useForm } from "react-hook-form";  // Import react-hook-form
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const JoinAsEmploye = () => {
+    const axiosPublic = useAxiosPublic()
     const { createUser, updateUaserPofile } = useAuth();
     const navigate = useNavigate();
     const {
@@ -20,22 +22,35 @@ const JoinAsEmploye = () => {
             .then((res) => {
                 const loggedUser = res.user;  // Fix typo: 'result' should be 'res'
                 console.log(loggedUser);
-                updateUaserPofile(data.name, data.photoURL)
+                updateUaserPofile(data.name, data.photo)
                     .then(() => {
-                        reset();
-                        Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: "User created successfully",
-                            showConfirmButton: false,
-                            timer: 1500,
-                        })
-                        navigate('/employeHome  ')
-                            .catch((err) => {
-                                console.log(err);
+                        console.log('user');
+                    })
+                    .catch(
+                        err => console.log(err.message),
+                    )
+                const userInfo = {
+                    name: data.name,
+                    bithdayDate: data.bod,
+                    email: data.email
+                }
+                console.log(userInfo);
+                axiosPublic.post('/users-employee', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            reset();
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "SignUp  successfully",
+                                showConfirmButton: false,
+                                timer: 1500
                             });
+                            navigate('/')
+                        }
                     });
             });
+
     };
 
     return (
@@ -49,7 +64,7 @@ const JoinAsEmploye = () => {
                             <h1 className="text-xl text-center font-bold leading-tight tracking-tight  md:text-2xl ">
                                 Join As Employe
                             </h1>
-                            <form  onSubmit={handleSubmit(onSubmit)} className="space-y-4 md:space-y-6" action="#">
+                            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 md:space-y-6" action="#">
                                 <div>
                                     <label className="block mb-2 text-sm font-medium">Full Name</label>
                                     <input
@@ -69,17 +84,27 @@ const JoinAsEmploye = () => {
                                         name="email"
                                         className="py-3 px-3 w-full"
                                         placeholder="Type Your Email" />
-                                    {errors.name && <span className="text-red-600">Name is required</span>}
+                                    {errors.email && <span className="text-red-600">Name is required</span>}
                                 </div>
                                 <div>
                                     <label className="block mb-2 text-sm font-medium">Date of birth</label>
                                     <input
                                         type="date"
-                                        {...register("date", { required: true })}
-                                        name="date"
+                                        {...register("bod", { required: true })}
+                                        name="bod"
                                         className="py-3 px-3 w-full"
                                         placeholder="Type Your Name" />
-                                    {errors.name && <span className="text-red-600">Name is required</span>}
+                                    {errors.bod && <span className="text-red-600">Name is required</span>}
+                                </div>
+                                <div>
+                                    <label className="block mb-2 text-sm font-medium">Image URL</label>
+                                    <input
+                                        type="text"
+                                        {...register("photo", { required: true })}
+                                        name="photo"
+                                        className="py-3 px-3 w-full"
+                                        placeholder="Type Your Name" />
+                                    {errors.photo && <span className="text-red-600">Name is required</span>}
                                 </div>
 
                                 <div>

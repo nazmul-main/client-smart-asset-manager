@@ -5,7 +5,6 @@ import ModalCoRequst from "./ModalCoRequst";
 
 const ReqCart = ({asset, refetch}) => {
     const {assetName, assetImage, assetType, price} = asset;
-    console.log(asset);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => {

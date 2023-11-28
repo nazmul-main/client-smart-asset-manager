@@ -9,47 +9,7 @@ const AdminHr = () => {
                     <h2 className="text-3xl font-semibold text-center py-4">HR/Admin</h2>
                     <ul className="menu p-4">
 
-                        <li>
-                            <NavLink className='text-white font-semibold ' to='/adminHome'>
-                                HOME
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className='text-white font-semibold ' to="/adminHome/assetList">
-                                Asset List
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className='text-white font-semibold ' to="/adminHome/addanAsset">
-                            Add an Asset
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className='text-white font-semibold ' to="/adminHome/allRequest">
-                            All Requests
-
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className='text-white font-semibold ' to="/adminHome/coustmRequestList">
-                            Custom Requests List
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className='text-white font-semibold ' to="/adminHome/myEmployeeList">
-                            My Employee List
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className='text-white font-semibold ' to="/adminHome/addAnEmployee">
-                            Add an Employee
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className='text-white font-semibold ' to="/adminHome/AdminHrProfile">
-                                Profile
-                            </NavLink>
-                        </li>
+                       
                     </ul>
                     <div className="divider"></div>
 

@@ -3,8 +3,10 @@ import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import { useForm } from "react-hook-form";  // Import react-hook-form
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const JoinAsARAdmin = () => {
+    const axiosPublic = useAxiosPublic();
     const { createUser, updateUaserPofile } = useAuth();
     const navigate = useNavigate();
     const {
@@ -12,27 +14,44 @@ const JoinAsARAdmin = () => {
         handleSubmit,
         reset,
         formState: { errors },
-    } = useForm(); 
+    } = useForm();
     const onSubmit = (data) => {
         console.log(data);
         createUser(data.email, data.password)
             .then((res) => {
-                const loggedUser = res.user;  
+                const loggedUser = res.user;
                 console.log(loggedUser);
                 updateUaserPofile(data.name, data.photoURL)
                     .then(() => {
-                        reset();
-                        Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: "User created successfully",
-                            showConfirmButton: false,
-                            timer: 1500,
-                        })
-                        navigate('/payment')
-                            .catch((err) => {
-                                console.log(err);
+                        console.log('user');
+                    })
+                    .catch(
+                        err => console.log(err.message),
+                    )
+                const userInfo = {
+                    name: data.name,
+                    CompanyName: data.CoName,
+                    bithdayDate: data.bod,
+                    email: data.email,
+                    CoLogo: data.coLogo,
+                    package:data.package
+
+                }
+                console.log(userInfo);
+                axiosPublic.post('/users-employee', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            reset();
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "SignUp  successfully",
+                                showConfirmButton: false,
+                                timer: 1500
                             });
+                            navigate('/payment')
+                        }
+
                     });
             });
     };
@@ -69,20 +88,50 @@ const JoinAsARAdmin = () => {
                                         {errors.coName && <span className="text-red-600">Name is required</span>}
                                     </div>
                                 </div>
+
+                                {/* <div className="md:flex gap-5">
+                                    <div className="w-full" >
+                                        <label className="block mb-2 text-sm font-medium">Date of birth</label>
+                                        <input
+                                            type="date"
+                                            {...register("bod", { required: true })}
+                                            name="bod"
+                                            className="py-3 px-3 w-full"
+                                            placeholder="Type Your Name" />
+                                        {errors.bod && <span className="text-red-600">Name is required</span>}
+                                    </div>
+                                    <div className="w-full">
+                                        <label className="block mb-2 text-sm font-medium ">
+                                            <span className="label-text ">Your Image</span>
+                                        </label>
+                                        <input
+                                            {...register("adminimage", { required: true })}
+                                            type="text"
+                                            placeholder="Your Image URL"
+                                            name="adminimage"
+                                            className="py-3 px-3 w-full"
+                                            required
+
+                                        />
+                                        {errors.adminimage && <span className="text-red-600">Name is required</span>}
+                                    </div>
+                                </div> */}
+
                                 <div className="md:flex gap-5">
                                     <div className="w-full">
                                         <label className="block mb-2 text-sm font-medium ">
                                             <span className="label-text ">Company Logo</span>
                                         </label>
                                         <input
-                                            {...register("image", { required: true })}
-                                            type="file"
-                                            name= "CoLogo"
-                                            className="file-input file-input-bordered w-full max-w-xs "
+                                            {...register("CoLogo", { required: true })}
+                                            type="text"
+                                            placeholder="Logo URL"
+                                            name="CoLogo"
+                                            className="py-3 px-3 w-full"
                                             required
 
                                         />
-                                        {errors.coLogo && <span className="text-red-600">Name is required</span>}
+                                        {errors.CoLogo && <span className="text-red-600">Logo is required</span>}
                                     </div>
 
                                     <div className="w-full">
@@ -101,11 +150,11 @@ const JoinAsARAdmin = () => {
                                         <label className="block mb-2 text-sm font-medium">Date of birth</label>
                                         <input
                                             type="date"
-                                            {...register("date", { required: true })}
-                                            name="date"
+                                            {...register("bod", { required: true })}
+                                            name="bod"
                                             className="py-3 px-3 w-full"
                                             placeholder="Birthday" />
-                                        {errors.date && <span className="text-red-600">Name is required</span>}
+                                        {errors.bod && <span className="text-red-600">Name is required</span>}
                                     </div>
 
                                     <div className="w-full">

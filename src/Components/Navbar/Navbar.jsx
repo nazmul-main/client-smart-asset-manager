@@ -7,8 +7,6 @@ import useAuth from "../../Hooks/useAuth";
 const Navbar = () => {
     // const [isLoggedIn, setIsLoggedIn] = useState(false);
     const { user, logout } = useAuth()
-    const  admin  = false;
-    const  employee  = true;
 
     const handlelogOut = () => {
         logout()
@@ -18,7 +16,7 @@ const Navbar = () => {
             })
     }
 
-    const WithOutLoginNavbar = <>
+    const Navlink = <>
 
 
         <li><NavLink to='/' className={({ isActive, isPending }) =>
@@ -32,68 +30,68 @@ const Navbar = () => {
         </li>
     </>
 
-    const adminLinks = (
-        <>
-            <li>
-                <NavLink to='/home' className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}> HOME
-                </NavLink>
-            </li>
-            <li>
-                <NavLink to="/joinEmploye" className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}> Join As Employe
-                </NavLink>
-            </li>
-            <li>
-                <NavLink to="/joinAdminHR" className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}>Join as HR/Admin
-                </NavLink>
-            </li>
-            <li>
-                <NavLink to="/admin" className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}>ADMINAdmin
-                </NavLink>
-            </li>
-        </>
-    );
+    // const adminLinks = (
+    //     <>
+    //         <li>
+    //             <NavLink to='/home' className={({ isActive, isPending }) =>
+    //                 isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}> HOME
+    //             </NavLink>
+    //         </li>
+    //         <li>
+    //             <NavLink to="/joinEmploye" className={({ isActive, isPending }) =>
+    //                 isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}> Join As Employe
+    //             </NavLink>
+    //         </li>
+    //         <li>
+    //             <NavLink to="/joinAdminHR" className={({ isActive, isPending }) =>
+    //                 isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}>Join as HR/Admin
+    //             </NavLink>
+    //         </li>
+    //         <li>
+    //             <NavLink to="/admin" className={({ isActive, isPending }) =>
+    //                 isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}>ADMINAdmin
+    //             </NavLink>
+    //         </li>
+    //     </>
+    // );
 
-    const employeeNavlink = (
-        <>
-            {/* <li>
-                <NavLink to='employeHome' className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}> HOME
-                </NavLink>
-            </li>
-            <li>
-                <NavLink to="/joinEmploye" className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}> My Team
-                </NavLink>
-            </li>
-            <li>
-                <NavLink to="/joinAdminHR" className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}>My Assets
-                </NavLink>
-            </li>
-            <li>
-                <NavLink to="/joinAdminHR" className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}> Request for an Asset
+    // const employeeNavlink = (
+    //     <>
+    //         {/* <li>
+    //             <NavLink to='employeHome' className={({ isActive, isPending }) =>
+    //                 isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}> HOME
+    //             </NavLink>
+    //         </li>
+    //         <li>
+    //             <NavLink to="/joinEmploye" className={({ isActive, isPending }) =>
+    //                 isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}> My Team
+    //             </NavLink>
+    //         </li>
+    //         <li>
+    //             <NavLink to="/joinAdminHR" className={({ isActive, isPending }) =>
+    //                 isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}>My Assets
+    //             </NavLink>
+    //         </li>
+    //         <li>
+    //             <NavLink to="/joinAdminHR" className={({ isActive, isPending }) =>
+    //                 isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}> Request for an Asset
 
-                </NavLink>
-            </li>
-            <li>
-                <NavLink to="/joinAdminHR" className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}> Make a Custom Request
+    //             </NavLink>
+    //         </li>
+    //         <li>
+    //             <NavLink to="/joinAdminHR" className={({ isActive, isPending }) =>
+    //                 isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}> Make a Custom Request
 
-                </NavLink>
-            </li>
-            <li>
-                <NavLink to="/joinAdminHR" className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}>  Profile
+    //             </NavLink>
+    //         </li>
+    //         <li>
+    //             <NavLink to="/joinAdminHR" className={({ isActive, isPending }) =>
+    //                 isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}>  Profile
 
-                </NavLink>
-            </li> */}
-        </>
-    );
+    //             </NavLink>
+    //         </li> */}
+    //     </>
+    // );
 
 
 
@@ -109,9 +107,7 @@ const Navbar = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-500 " fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-opacity-70 bg-black rounded-box w-52">
-                            {user && admin && adminLinks}
-                            {user && employee && employeeNavlink}
-                            {!user && WithOutLoginNavbar}
+                            {Navlink}
 
                         </ul>
                     </div>
@@ -119,9 +115,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-center hidden lg:flex z-50">
                     <ul className="menu menu-horizontal px-1">
-                        {user && admin && adminLinks}
-                        {user && employee && employeeNavlink}
-                        {!user && WithOutLoginNavbar}
+                        {Navlink}
                     </ul>
                 </div>
 

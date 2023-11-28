@@ -14,7 +14,7 @@ const auth = getAuth(app)
 const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState({});
-    console.log(user);
+    console.log('user',user);
     const [loading, setLoading] = useState(true)
     const axiosPublic = useAxiosPublic()
 
@@ -26,9 +26,9 @@ const AuthProvider = ({ children }) => {
     }
 
     /* create user */
-    const createUser = (eamil, password) => {
+    const createUser = (email, password) => {
         setLoading(true);
-        return createUserWithEmailAndPassword(auth, eamil, password)
+        return createUserWithEmailAndPassword(auth, email, password)
     }
     // sign IN 
     const signin = (email, password) => {
@@ -45,7 +45,6 @@ const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
-        setLoading(true)
         return signOut(auth)
     }
 
@@ -55,32 +54,38 @@ const AuthProvider = ({ children }) => {
 
  /* User observe */
  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      console.log('current user', currentUser.email);
-      if (currentUser) {
-        const userInfo = { email: currentUser?.email }
-        console.log(userInfo);
-        axiosPublic.post('/api/v1/jwt', userInfo)
-        .then(res =>{
-          if(res.data){
+  const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
+    console.log('current user', currentUser.email);
+    if (currentUser) {
+      const userInfo = { email: currentUser?.email }
+      axiosPublic.post('jwt', userInfo)
+        .then(res => {
+          if (res.data) {
             localStorage.setItem('access-token', res?.data?.token);
             setLoading(false);
-            console.log(res.data);
           }
+
         })
-      } else {
-       localStorage.removeItem('access-token')
-       setLoading(false);
-      }
-      
-    });
-    return () => {
+    } else {
+      localStorage.removeItem('access-token')
+      setLoading(false);
+    }
 
-      return unsubscribe();
-    };
-  }, [axiosPublic]);
+  });
+  return () => {
 
+    return unsubscribe();
+  };
+}, [axiosPublic]);
+
+useEffect(() => {
+
+  if(!user?.email){
+    localStorage.removeItem('access-token')
+  }
+
+},[user]);
 
 
 

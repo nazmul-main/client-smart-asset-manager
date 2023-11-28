@@ -4,24 +4,24 @@ import Home from "../Pages/WithoutLogin/Home";
 import JoinAsEmploye from "../Pages/WithoutLogin/JoinAsEmploye";
 import JoinAsARAdmin from "../Pages/WithoutLogin/JoinAsARAdmin";
 import SignIn from "../Pages/WithoutLogin/SignIn";
-import Employe from "../Pages/NormalEmploye/Employe";
+import Dashboard from "../DashBoard/Dashboard";
 import EmployeHome from "../Pages/NormalEmploye/EmployeHome";
-import MyAsset from "../Pages/NormalEmploye/MyAsset";
 import MyTeam from "../Pages/NormalEmploye/MyTeam";
+import Payment from "../Pages/AdminHr/Payment/Payment";
+import MyAsset from "../Pages/NormalEmploye/MyAsset";
 import RequestAsset from "../Pages/NormalEmploye/RequestAsset";
 import MakeCoustomRequest from "../Pages/NormalEmploye/MakeCoustomRequest";
 import EmployeProfile from "../Pages/NormalEmploye/EmployeProfile";
-import AdminHr from "../Pages/AdminHR/AdminHr";
 import AdminHrHome from "../Pages/AdminHr/AdminHrHome";
-import AssetList from "../Pages/AdminHR/AssetList";
-import AddAnAsset from "../Pages/AdminHR/AddAnAsset";
-import AllRequest from "../Pages/AdminHR/AllRequest";
-import CoustomReqList from "../Pages/AdminHR/CoustomReqList";
-import MyEmployeeList from "../Pages/AdminHr/MyEmployeeList";
-import AddAnEmployee from "../Pages/AdminHR/AddAnEmployee";
-import AdminHrProfile from "../Pages/AdminHR/AdminHrProfile";
 import AsssetUpdateFrom from "../Pages/AdminHr/AsssetUpdateFrom";
-import Payment from "../Pages/AdminHr/Payment/Payment";
+import AssetList from "../Pages/AdminHr/AssetList";
+import AddAnAsset from "../Pages/AdminHr/AddAnAsset";
+import CoustomReqList from "../Pages/AdminHr/CoustomReqList";
+import AllRequest from "../Pages/AdminHr/AllRequest";
+import MyEmployeeList from "../Pages/AdminHr/MyEmployeeList";
+import AddAnEmployee from "../Pages/AdminHr/AddAnEmployee";
+import AdminHrProfile from "../Pages/AdminHr/AdminHrProfile";
+
 
 
 
@@ -39,19 +39,39 @@ export const router = createBrowserRouter([
     },
 
 
+    /* Signin */
+    {
+        path: '/signin',
+        element: <SignIn></SignIn>
+    },
+
+     /*  Payment */
+     {
+        path: 'payment',
+        element: <Payment></Payment>
+    },
+
+    /* Join HR/Admin */
+    {
+        path: '/joinAdminHR',
+        element: <JoinAsARAdmin></JoinAsARAdmin>
+    },
+
+
     /* Join Employee */
     {
         path: '/joinEmploye',
         element: <JoinAsEmploye></JoinAsEmploye>
 
+
     },
 
     {
-        path: '/employeHome',
-        element: <Employe></Employe>,
+        path: 'dashboard',
+        element: <Dashboard></Dashboard>,
         children: [
             {
-                path: '/employeHome',
+                path: 'employeHome',
                 element: <EmployeHome></EmployeHome>
             },
 
@@ -78,31 +98,13 @@ export const router = createBrowserRouter([
             {
                 path: 'employeProfile',
                 element: <EmployeProfile></EmployeProfile>
-            }
+            },
 
-        ],
-    },
-
-    /*  Payment */
-    {
-        path: 'payment',
-        element: <Payment></Payment>
-    },
-
-    /* Join HR/Admin */
-    {
-        path: '/joinAdminHR',
-        element: <JoinAsARAdmin></JoinAsARAdmin>
-    },
-
-    {
-        path: '/adminHome',
-        element: <AdminHr></AdminHr>,
-        children: [
-           
+            /*----------------------- Admin --------------------------*/
             {
-                path: '/adminHome',
+                path: 'adminHome',
                 element: <AdminHrHome></AdminHrHome>
+
             },
 
             {
@@ -143,15 +145,9 @@ export const router = createBrowserRouter([
                 element: <AdminHrProfile></AdminHrProfile>
             },
 
-
-
         ],
     },
 
 
 
-    {
-        path: '/signin',
-        element: <SignIn></SignIn>
-    }
 ])
