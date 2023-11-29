@@ -1,15 +1,29 @@
 // import { useEffect, useState } from 'react';
 import { useQuery } from "@tanstack/react-query";
-import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
+import {  FaEdit, FaTrashAlt } from "react-icons/fa";
 import { } from "react-icons/fa";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { useState } from "react";
+import ModalAssetUpdate from "./ModalAssetUpdaate";
+import SectionTiltle from "../../Components/SectionTiltle";
 
 const AssetList = () => {
+
+
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
+
     const axiosPublic = useAxiosPublic()
-
-
     const { data: asssets = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
@@ -18,8 +32,8 @@ const AssetList = () => {
         },
     })
 
-     /* Deletehabdle */
-     const handleDelete = (id) => {
+    /* Deletehabdle */
+    const handleDelete = (id) => {
         console.log(id);
 
         Swal.fire({
@@ -32,21 +46,21 @@ const AssetList = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-               axiosPublic.delete(`http://localhost:5001/api/v1/assets/${id}`)
-               .then(res => {
-                if(res.data.deletedCount > 0){
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                    });
-                    refetch()
-                }
-               })
+                axiosPublic.delete(`http://localhost:5001/api/v1/assets/${id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                            refetch()
+                        }
+                    })
             }
         })
 
-        
+
     };
 
 
@@ -56,6 +70,8 @@ const AssetList = () => {
 
     return (
         <div className="relative overflow-x-auto shadow-md sm:rounded-MD mx-8 my-12 " >
+            {/* title */}
+            <SectionTiltle subHeading={'SEE TOUR ALL ASSET'} heading={'ASSET LIST'}/>
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
                 <thead className="text-xs text-gray-700 uppercase bg-green-200 ">
                     <tr>
@@ -106,13 +122,12 @@ const AssetList = () => {
                             </td>
                             <td className="px-4 md:text-[16px] py-4 text-center">
 
-                                <Link to={`/adminHome/update-assets/${asset._id}`}>
-                                    <button
-
-                                        className="btn hover:font-semibold text-[16px] hover:text-xl btn-md hover:bg-[#205427db] bg-[#23611b] rounded-full py-2 ">
-                                        < FaRegEdit className=" text-white  text-center "> </FaRegEdit>
-
-                                    </button></Link>
+                               
+                                <button className="text-white btn hover:font-semibold text-[16px] hover:text-xl btn-md hover:bg-[#205427db] bg-[#23611b] rounded-full py-2"
+                                    onClick={openModal}>
+                                   <FaEdit></FaEdit>
+                                </button>
+                                <ModalAssetUpdate asset={asset} isOpen={isModalOpen} closeModal={closeModal} refetch={refetch} />
                             </td>
                             <td className="px-4 py-4 text-center">
                                 <button
@@ -122,9 +137,11 @@ const AssetList = () => {
                                 </button>
                             </td>
                         </tr>
+
                     ))}
                 </tbody>
             </table>
+
         </div>
     );
 };

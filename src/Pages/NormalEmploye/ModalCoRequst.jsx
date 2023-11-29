@@ -128,7 +128,7 @@ const ModalCoRequst = ({ isOpen, closeModal, asset, refetch}) => {
 
                                         <div>
                                             <button
-                                                // onClick={handleSaveClick}
+                                                onClick={handleSaveClick}
                                                 className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 mr-5"
                                             >
                                                 Save
@@ -191,51 +191,6 @@ export default ModalCoRequst;
 /* 
 
 
- const handleCustomRequest = (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const assetName = form.assetName.value;
-        const price = form.price.value;
-        const assetType = form.assetType.value;
-        const assetImage = form.assetImage.value;
-        const whyNeed = form.whyNeed.value;
-        const additionalInfo = form.additionalInfo.value;
-        console.log(assetName,  additionalInfo, assetType, assetImage, whyNeed, price);
-
-        const rqpAsset = {
-            assetName: assetName,
-            assetType: assetType,
-            price: price,
-            additionalInfo: additionalInfo,
-            assetImage: assetImage,
-            whyNeed: whyNeed,
-            Status: Status
-        };
-
-
-        // fetch(`http://localhost:5001/api/v1/coustom-assets-update/${_id}`, {
-        //     method: 'PUT',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(rqpAsset),
-        // })
-        //     .then((res) => res.json())
-        //     .then((data) => {
-        //         console.log(data);
-        //         form.reset();
-        //         Swal.fire({
-        //             position: "center",
-        //             icon: "success",
-        //             title: "Updadeted successfully",
-        //             showConfirmButton: false,
-        //             timer: 1500
-        //         });
-              
-        //     });
-
-        }
-        
 
 
 */
