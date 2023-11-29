@@ -21,6 +21,7 @@ import AllRequest from "../Pages/AdminHr/AllRequest";
 import MyEmployeeList from "../Pages/AdminHr/MyEmployeeList";
 import AddAnEmployee from "../Pages/AdminHr/AddAnEmployee";
 import AdminHrProfile from "../Pages/AdminHr/AdminHrProfile";
+import PrivateRoute from "../Private/PrivateRoute";
 
 
 
@@ -45,11 +46,8 @@ export const router = createBrowserRouter([
         element: <SignIn></SignIn>
     },
 
-     /*  Payment */
-     {
-        path: 'payment',
-        element: <Payment></Payment>
-    },
+    /*  Payment */
+
 
     /* Join HR/Admin */
     {
@@ -69,6 +67,7 @@ export const router = createBrowserRouter([
     {
         path: 'dashboard',
         element: <Dashboard></Dashboard>,
+
         children: [
             {
                 path: 'employeHome',
@@ -103,13 +102,17 @@ export const router = createBrowserRouter([
             /*----------------------- Admin --------------------------*/
             {
                 path: 'adminHome',
-                element: <AdminHrHome></AdminHrHome>
+                element: <PrivateRoute > <AdminHrHome></AdminHrHome></PrivateRoute>
 
+            },
+            {
+                path: 'payment',
+                element: <PrivateRoute><Payment></Payment></PrivateRoute>
             },
 
             {
                 path: 'assetList',
-                element: <AssetList></AssetList>
+                element: <PrivateRoute> <AssetList></AssetList></PrivateRoute>
             },
             /* Update asset */
             {
@@ -137,7 +140,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'addAnEmployee',
-                element: <AddAnEmployee></AddAnEmployee>
+                element: <PrivateRoute>  <AddAnEmployee></AddAnEmployee></PrivateRoute>
             },
 
             {

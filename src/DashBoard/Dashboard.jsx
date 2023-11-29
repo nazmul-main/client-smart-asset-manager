@@ -1,10 +1,16 @@
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../Hooks/useAdmin";
+// import useAdmin from "../Hooks/useAdmin";
 
 
 
 const Dashboard = () => {
+    //   const  isAdmin = true;
 
-    const isAdmin = true;
+    const [isAdmin, isLoading] = useAdmin();
+    if(isLoading){
+        return <p>Loadeing...</p>
+    }
     console.log(isAdmin);
 
 
@@ -55,10 +61,11 @@ const Dashboard = () => {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink className='text-white font-semibold ' to="AdminHrProfile">
+                                <NavLink className='text-white font-semibold ' to="/dashboard/AdminHrProfile">
                                     Profile
                                 </NavLink>
                             </li>
+                            
 
                         </>
                             :

@@ -84,7 +84,7 @@ const MakeCoustomRequest = () => {
                     <div className="md:flex gap-4">
                         <div className="mb-4 w-full">
                             <label className="block text-sm font-medium text-gray-600">Asset Type</label>
-                            <select id="assetType" name="assetType" className="mt-1 p-2 w-full border rounded-md">
+                            <select value={'defaulvalue'} id="assetType" name="assetType" className="mt-1 p-2 w-full border rounded-md">
                                 <option selected>Choose a Type</option>
                                 <option value="Electronic">Electronic </option>
                                 <option value="Furniture">Furniture</option>

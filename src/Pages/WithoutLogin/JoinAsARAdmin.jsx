@@ -30,10 +30,10 @@ const JoinAsARAdmin = () => {
                     )
                 const userInfo = {
                     name: data.name,
-                    CompanyName: data.CoName,
+                    CompanyName: data.coName,
                     bithdayDate: data.bod,
                     email: data.email,
-                    CoLogo: data.coLogo,
+                    CoLogo: data.CoLogo,
                     package:data.package
 
                 }
@@ -49,7 +49,7 @@ const JoinAsARAdmin = () => {
                                 showConfirmButton: false,
                                 timer: 1500
                             });
-                            navigate('/payment')
+                            navigate('/dashboard/payment')
                         }
 
                     });
@@ -170,8 +170,8 @@ const JoinAsARAdmin = () => {
                                         {...register("package", { required: true })} id="countries" className="bg-gray-50 border border-gray-300  rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   ">
                                         <option selected>Choose a Package</option>
                                         <option value="5 Members for $5">5 Members for $5 </option>
-                                        <option value="5 Members for $5">5 Members for $5 </option>
-                                        <option value="5 Members for $5">5 Members for $5</option>
+                                        <option value="5 Members for $5">5 Members for $8 </option>
+                                        <option value="5 Members for $5">20 Members for $15 </option>
                                     </select>
                                     {errors.package && <span className="text-red-600">Name is required</span>}
                                 </div>

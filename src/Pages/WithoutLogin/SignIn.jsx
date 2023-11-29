@@ -5,10 +5,10 @@ import Swal from "sweetalert2";
 
 const SignIn = () => {
 
-    const { signIn } = useAuth();
+    const { signin } = useAuth();
     const navigate = useNavigate()
     const location = useLocation()
-    const from =  location.state?.from?.pathname || '/'
+    const from =  location.state?.from?.pathname || '/dashboard'
 
     const handleSignIn = e => {
         e.preventDefault();
@@ -16,7 +16,7 @@ const SignIn = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
-        signIn(email, password)
+        signin(email, password)
             .then(result => {
                 const user = result.user;
                 console.log(user);

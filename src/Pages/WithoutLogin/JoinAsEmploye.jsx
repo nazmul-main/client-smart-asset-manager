@@ -6,6 +6,11 @@ import { useForm } from "react-hook-form";  // Import react-hook-form
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const JoinAsEmploye = () => {
+
+    const role = 'user'
+
+
+
     const axiosPublic = useAxiosPublic()
     const { createUser, updateUaserPofile } = useAuth();
     const navigate = useNavigate();
@@ -32,7 +37,9 @@ const JoinAsEmploye = () => {
                 const userInfo = {
                     name: data.name,
                     bithdayDate: data.bod,
-                    email: data.email
+                    email: data.email,
+                    image:data.photo,
+                    role: role
                 }
                 console.log(userInfo);
                 axiosPublic.post('/users-employee', userInfo)

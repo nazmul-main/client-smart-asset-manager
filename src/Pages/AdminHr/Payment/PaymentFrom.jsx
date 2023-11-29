@@ -68,6 +68,7 @@ const PaymentFrom = () => {
 
     return (
         <div className="">
+           
             <form onSubmit={handleSubmit} className="border-4 p-8">
                 <CardElement
                     options={{
