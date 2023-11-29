@@ -53,7 +53,7 @@ const JoinAsEmploye = () => {
                                 showConfirmButton: false,
                                 timer: 1500
                             });
-                            navigate('/')
+                            navigate('/dashboard')
                         }
                     });
             });

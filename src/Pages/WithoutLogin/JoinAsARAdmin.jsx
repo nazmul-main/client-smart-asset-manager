@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import { useForm } from "react-hook-form";  // Import react-hook-form
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
@@ -29,7 +29,7 @@ const JoinAsARAdmin = () => {
                         err => console.log(err.message),
                     )
                 const userInfo = {
-                    name: data.name,
+                    adminname: data.name,
                     CompanyName: data.coName,
                     bithdayDate: data.bod,
                     email: data.email,
@@ -42,14 +42,14 @@ const JoinAsARAdmin = () => {
                     .then(res => {
                         if (res.data.insertedId) {
                             reset();
-                            Swal.fire({
-                                position: "center",
-                                icon: "success",
-                                title: "SignUp  successfully",
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-                            navigate('/dashboard/payment')
+                            // Swal.fire({
+                            //     position: "center",
+                            //     icon: "success",
+                            //     title: "SignUp  successfully",
+                            //     showConfirmButton: false,
+                            //     timer: 1500
+                            // });
+                            navigate('/payment')
                         }
 
                     });

@@ -47,7 +47,10 @@ export const router = createBrowserRouter([
     },
 
     /*  Payment */
-
+    {
+        path: '/payment',
+        element: <PrivateRoute><Payment></Payment></PrivateRoute>
+    },
 
     /* Join HR/Admin */
     {
@@ -105,10 +108,7 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute > <AdminHrHome></AdminHrHome></PrivateRoute>
 
             },
-            {
-                path: 'payment',
-                element: <PrivateRoute><Payment></Payment></PrivateRoute>
-            },
+
 
             {
                 path: 'assetList',

@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 
 const PaymentFrom = () => {
+    const navigate = useNavigate()
     const axiosSequre = useAxiosSecure()
     const {user} = useAuth()
     console.log(user.email);
@@ -18,11 +20,14 @@ const PaymentFrom = () => {
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        title: `${user.name} is an admin now!`,
+                        title: `payment successfully`,
                         showConfirmButton: false,
                         timer: 1500
                     });
+                  
+                    
                 }
+                navigate('/dashboard')
             })
     }
 
@@ -68,6 +73,7 @@ const PaymentFrom = () => {
 
     return (
         <div className="">
+            
            
             <form onSubmit={handleSubmit} className="border-4 p-8">
                 <CardElement

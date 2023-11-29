@@ -14,7 +14,7 @@ const auth = getAuth(app)
 const AuthProvider = ({ children }) => {
 
   const [user, setUser] = useState({});
-  console.log('user', user);
+  // console.log('user', user);
   const [loading, setLoading] = useState(true)
   const axiosPublic = useAxiosPublic()
 
@@ -56,7 +56,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log('current user', currentUser.email);
+      // console.log('current user', currentUser.email);
       if (currentUser) {
         const userInfo = { email: currentUser?.email }
         axiosPublic.post('/jwt', userInfo)
@@ -67,24 +67,18 @@ const AuthProvider = ({ children }) => {
             }
 
           })
+      }else{
+        localStorage.removeItem('access-token');
       }
 
     });
     return () => {
 
-      return unsubscribe();
+       unsubscribe();
     };
   }, [axiosPublic]);
 
-  useEffect(() => {
 
-    if (!user?.email) {
-      localStorage.removeItem('access-token')
-      setLoading(false);
-    }
-    
-
-  }, [user]);
 
 
 

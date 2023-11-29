@@ -12,7 +12,7 @@ const AddAnEmployee = () => {
     const currentUser = useAuth();
     const cur = currentUser.user
 
-    const { data: users = [], } = useQuery({
+    const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await axiosSecure.get('/all-users')
@@ -21,16 +21,10 @@ const AddAnEmployee = () => {
         },
     });
 
-    const onlyUser = users.filter((Ouser) => {
-        if(Ouser.role === 'admin') 
-        return
-    });
+    const onlyUser = users.filter((ouser) => ouser.role !== 'admin');
+    const admin = users?.find((alluser) => alluser.email === cur.email && alluser.role === 'admin');
 
-    const admin = users.filter((user) => user.role);
-
-    // Find the admin with the same email as the current user
-    const mainAdmin = admin.find((adminuser) => adminuser.email === cur.email);
-    console.log(mainAdmin);
+   
 
     return (
         <div className="md:w-10/12 mx-auto">
@@ -52,8 +46,8 @@ const AddAnEmployee = () => {
                     ></SectionTiltle>
 
 
-                    {users?.map((asset, index) => (
-                        <Alluser key={asset._id} asset={asset} mainAdmin={mainAdmin} index={index} ></Alluser>
+                    {onlyUser?.map((asset, index) => (
+                        <Alluser key={asset._id} asset={asset} refetch={refetch}  index={index} admin={admin} ></Alluser>
                     ))}
 
 
