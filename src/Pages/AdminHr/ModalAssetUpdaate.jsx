@@ -3,7 +3,8 @@
 import Swal from 'sweetalert2';
 
 const ModalAssetUpdate = ({ isOpen, closeModal, asset, refetch }) => {
-    const { name,type, quantity,_id } = asset
+    const { name, type, quantity, _id } = asset
+    console.log(asset);
     const handleCancelClick = () => {
         closeModal();
     };
@@ -48,13 +49,8 @@ const ModalAssetUpdate = ({ isOpen, closeModal, asset, refetch }) => {
             });
 
 
-      
+
     };
-
-
-
-
-
 
 
     if (!isOpen) {
@@ -64,6 +60,8 @@ const ModalAssetUpdate = ({ isOpen, closeModal, asset, refetch }) => {
     return (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
             {/* Modal content goes here */}
+
+           
             <div className="bg-white p-8 rounded shadow-md ">
                 <form onSubmit={handleSaveClick}>
                     <h2 className='text-xl font-bold my-6 uppercase border-y-4 py-2 '>Update Your asset </h2>
@@ -77,7 +75,7 @@ const ModalAssetUpdate = ({ isOpen, closeModal, asset, refetch }) => {
 
                         <div className="mb-4 w-full">
                             <label className="block text-sm font-medium text-gray-600 text-start py-1">Quantity</label>
-                            <input defaultValue={quantity} type="text"  name="quantity" className="mt-1 p-2 w-full border rounded-md" />
+                            <input defaultValue={quantity} type="text" name="quantity" className="mt-1 p-2 w-full border rounded-md" />
                         </div>
                     </div>
 
@@ -99,7 +97,7 @@ const ModalAssetUpdate = ({ isOpen, closeModal, asset, refetch }) => {
                         </button>
                         <p
                             onClick={handleCancelClick}
-                            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 inline"
+                            className="cursor-pointer bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 inline"
                         >
                             Cancel
                         </p>

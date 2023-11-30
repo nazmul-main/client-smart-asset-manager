@@ -3,12 +3,14 @@ import { FaAddressBook } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAuth from "../../Hooks/useAuth";
 
 
 const Alluser = ({ asset, index, admin, refetch }) => {
+    const {user} = useAuth;
     const axiosSecure = useAxiosSecure()
 
-    const { image, name, role, email, _id } = asset;
+    const { image, name, role, email, _id, bithdayDate } = asset;
     // const adminInfo = {adminEmail: admin?.email, coLogo: admin?.CoLogo, }
     const adminEmail = admin?.email;
     const companyLogo = admin?.CoLogo
@@ -17,7 +19,7 @@ const Alluser = ({ asset, index, admin, refetch }) => {
 
     const handleFoodCard = () => {
         const teamInfo = {
-            userId: _id, email, image, name, role, adminEmail, companyLogo
+            userId: _id, email, image, name, role, adminEmail, companyLogo, bithdayDate
         }
 
         axiosSecure.post("/add-team", teamInfo)
@@ -86,7 +88,7 @@ const Alluser = ({ asset, index, admin, refetch }) => {
                             <Link>
                                 {role === 'employee' ? (
                                     <button
-                                        disabled={true} // disable the button when role is 'employee'
+                                        disabled={true}
                                         className="btn text-[16px] btn-md rounded-full py-2"
                                     >
                                         <FaAddressBook className="text-gray-500 text-center" />

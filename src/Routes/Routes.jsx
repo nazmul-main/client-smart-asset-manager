@@ -13,7 +13,7 @@ import RequestAsset from "../Pages/NormalEmploye/RequestAsset";
 import MakeCoustomRequest from "../Pages/NormalEmploye/MakeCoustomRequest";
 import EmployeProfile from "../Pages/NormalEmploye/EmployeProfile";
 import AdminHrHome from "../Pages/AdminHr/AdminHrHome";
-import AsssetUpdateFrom from "../Pages/AdminHr/AsssetUpdateFrom";
+// import AsssetUpdateFrom from "../Pages/AdminHr/AsssetUpdateFrom";
 import AssetList from "../Pages/AdminHr/AssetList";
 import AddAnAsset from "../Pages/AdminHr/AddAnAsset";
 import CoustomReqList from "../Pages/AdminHr/CoustomReqList";
@@ -115,11 +115,11 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute> <AssetList></AssetList></PrivateRoute>
             },
             /* Update asset */
-            {
-                path: 'update-assets/:id',
-                element: <AsssetUpdateFrom></AsssetUpdateFrom>,
-                loader: ({ params }) => fetch(`http://localhost:5001/api/v1/assets/update-assets/${params.id}`)
-            },
+            // {
+            //     path: 'update-assets/:id',
+            //     element: <AsssetUpdateFrom></AsssetUpdateFrom>,
+            //     loader: ({ params }) => fetch(`http://localhost:5001/api/v1/assets/update-assets/${params.id}`)
+            // },
             {
                 path: 'addanAsset',
                 element: <AddAnAsset></AddAnAsset>

@@ -5,12 +5,16 @@ import { Link } from "react-router-dom";
 
 const RequestAsset = () => {
 
+
+
+
+
     const axiosPublic = useAxiosPublic()
     const { data: asssets = [], } = useQuery({
-
         queryKey: ['users'],
         queryFn: async () => {
             const res = await axiosPublic.get('/assets')
+            console.log(res.data);
             return res.data
         },
     })

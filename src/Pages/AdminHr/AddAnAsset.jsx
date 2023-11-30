@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import useAuth from "../../Hooks/useAuth";
 
 // const imag_hosting_key = import.meta.env.VITE_IMAAGE_HOSTIMG_KEY
 // const imag_hosting_API = `https://api.imgbb.com/1/upload?key=${imag_hosting_key}`
@@ -10,6 +11,8 @@ const AddAnAsset = () => {
     /* Find Current date */
     const date = new Date();
     console.log(date);
+    const {user} = useAuth();
+    const adminEmail = user.email
 
     const currentYear = date.getFullYear().toString();
     const lastTwoDigits = currentYear.slice(2);
@@ -43,24 +46,14 @@ const AddAnAsset = () => {
     } = useForm()
 
     const onSubmit = async (data) => {
-        // Add currentDate to the data being sent
-        //----------------------------------------------
-        /* console.log(data);
-        const imgfile = { image: data.image[0] }
-        const res = await axiosPublic.post(imag_hosting_API, imgfile, {
-                    headers: {
-                        'Content-type': 'multipart/form-data'
-                    }
-                })
-                console.log(res.data); */
-        //-------------------------------------
-        
         const postData = {
             ...data,
             currentDate: currentDate,
+            adminEmail: adminEmail,
         };
 
         console.log(postData);
+
 
         // Send to Backend
         axiosPublic.post('/assets', postData)
@@ -93,11 +86,11 @@ const AddAnAsset = () => {
 
     return (
         <div className="flex items-center justify-center h-screen">
-            <div className="max-w-screen-xl md:w-1/2 mx-auto px-4 md:px-8 py-8 md:12 bg-gray-200  ">
-                <form onSubmit={handleSubmit(onSubmit)} className=' px-4 md:px-12 py-4 bg-[#6cb95b]' >
+            <div className="max-w-screen-xl md:w-1/2 mx-auto px-4 md:px-8 py-8 md:12 bg-[#a4da98]   ">
+                <form onSubmit={handleSubmit(onSubmit)} className=' px-4 md:px-12 py-4 bg-gray-200 ' >
                     <div>
                         <h2 className="py-4 text-xl md:text-3xl font-bold text-center">Add An Asset</h2>
-                        <div>
+                        <div className="space-y-4">
                             <div>
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
                                     Product Name
@@ -121,11 +114,12 @@ const AddAnAsset = () => {
                                     // onSubmit={imgSubmit}
                                     type="text"
                                     name="image"
-                                    className="file-input file-input-bordered w-full  "
+                                    className="file-input file-input-bordered w-full px-3 py-2  "
+                                    placeholder="Enter Photo URL"
                                     required
 
                                 />
-                                {errors.image && <span className="text-red-600">Name is required</span>}
+                                {errors.image && <span className="text-red-600">Img is required</span>}
                             </div>
                             <div>
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
@@ -155,7 +149,7 @@ const AddAnAsset = () => {
                                 {errors.type && <span className="text-red-600">Name is required</span>}
 
                             </div>
-                            <button className="btn bg-[#555843]  hover:bg-[#34362a] text-white    w-full my-4">ADD</button>
+                            <button className="btn bg-[#25741e]  hover:bg-[#349655] text-white    w-full my-4">ADD</button>
                         </div>
                     </div>
 

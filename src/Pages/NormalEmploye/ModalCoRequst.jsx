@@ -4,7 +4,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 
 
-const ModalCoRequst = ({ isOpen, closeModal, asset, refetch}) => {
+const ModalCoRequst = ({ isOpen, closeModal, asset, refetch }) => {
     const [isEditMode, setIsEditMode] = useState(false);
     const { assetName, assetImage, assetType, price, additionalInfo, Status, _id } = asset;
 
@@ -29,6 +29,7 @@ const ModalCoRequst = ({ isOpen, closeModal, asset, refetch}) => {
         const assetType = form.assetType.value;
         const assetImage = form.assetImage.value;
         const additionalInfo = form.additionalInfo.value;
+        console.log(assetName, assetType, assetImage, price, additionalInfo);
 
         const rqpAsset = {
             assetName: assetName,
@@ -101,14 +102,8 @@ const ModalCoRequst = ({ isOpen, closeModal, asset, refetch}) => {
                                                 <label className="block text-sm font-medium text-gray-600">Asset Type</label>
                                                 <select id="assetType" name="assetType" className="mt-1 p-2 w-full border rounded-md">
                                                     <option selected>Choose a Type</option>
-                                                    <option value="Electronic">Electronic </option>
-                                                    <option value="Furniture">Furniture</option>
-                                                    <option value="IT Equipment">IT Equipment</option>
-                                                    <option value="Office Supplies">Office Supplies</option>
-                                                    <option value="Surveillance">Surveillance</option>
-                                                    <option value="Safety Equipment">Safety Equipment</option>
-                                                    <option value="Communication Equipment">Communication Equipment</option>
-                                                    <option value="Power Supplies">Power Supplies</option>
+                                                    <option value="Returnable">Returnable</option>
+                                                    <option value="Non-returnable">Non-returnable</option>
                                                 </select>
                                             </div>
 
@@ -128,7 +123,7 @@ const ModalCoRequst = ({ isOpen, closeModal, asset, refetch}) => {
 
                                         <div>
                                             <button
-                                                onClick={handleSaveClick}
+                                                // onClick={handleSaveClick}
                                                 className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 mr-5"
                                             >
                                                 Save

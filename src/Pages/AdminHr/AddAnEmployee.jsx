@@ -21,7 +21,7 @@ const AddAnEmployee = () => {
         },
     });
 
-    const onlyUser = users.filter((ouser) => ouser.role !== 'admin');
+    const onlyUser = users?.filter((ouser) => ouser.role !== 'admin');
     const admin = users?.find((alluser) => alluser.email === cur.email && alluser.role === 'admin');
 
    

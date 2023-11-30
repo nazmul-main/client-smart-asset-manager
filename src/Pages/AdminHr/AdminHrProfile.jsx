@@ -1,61 +1,56 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import useAuth from "../../Hooks/useAuth";
+import { useState } from "react";
+import { FaEdit } from "react-icons/fa";
+import UpdateModal from "../../Components/Profile/UpdateModal ";
 
 const AdminHrProfile = () => {
-    const axiosSecure = useAxiosPublic()
+
+    const axiospublic = useAxiosPublic();
+    const { user } = useAuth();
+
+    const currentUser = user?.email;
+    console.log(currentUser);
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
 
 
-    const { data: users = [] } = useQuery({
-        queryKey: ['users'],
+    const { data: yours = [], refetch } = useQuery({
+        queryKey: ["users"],
         queryFn: async () => {
-            const res = await axiosSecure.get('/all-users')
+            const res = await axiospublic.get(`/all-users-single?email=${currentUser}`);
+            console.log('your data', res.data);
             return res.data;
         },
     });
-
-
-    const user = users.map(user =>console.log(user))
-    console.log(user);
-
-
     return (
-        <div className=" flex justify-center items-center min-h-screen ">
-            <div className="">
-
-                <div className="max-w-xs">
-                    <div className="bg-white shadow-xl rounded-lg py-3">
-                        <div className="photo-wrapper p-2">
-                            <img className="w-32 h-32 rounded-full mx-auto" src="https://www.gravatar.com/avatar/2acfb745ecf9d4dccb3364752d17f65f?s=260&d=mp" alt="John Doe" />
+        <div className="flex justify-center items-center min-h-screen">
+            <div>
+                <div className="flex flex-col justify-center max-w-xs p-6 shadow-2xl shadow-[#296835] rounded-xl sm:px-12 bg-[#ecfdef5e]">
+                    <img src="https://source.unsplash.com/150x150/?portrait?3" alt="" className="w-32 h-32 mx-auto rounded-full " />
+                    <div className="space-y-4 text-center divide-y ">
+                        <div className="my-2 space-y-1">
+                            <h2 className="text-xl font-semibold sm:text-2xl">{yours?.adminname}</h2>
+                            <h2 className="px-5 text-xs sm:text-base ">{yours?.email}</h2>
+                            <p className="px-5 text-xs sm:text-base ">Birthday:{yours?.bithdayDate}</p>
+                            <button className="text-white btn hover:font-semibold text-[16px] hover:text-xl btn-md hover:bg-[#205427db] bg-[#23611b] rounded-full py-2"
+                                onClick={openModal}>
+                                <FaEdit></FaEdit>
+                            </button>
+                                <UpdateModal yours={yours} isOpen={isModalOpen} closeModal={closeModal} refetch={refetch} />
                         </div>
-                        <div className="p-2">
-                            <h3 className="text-center text-xl text-gray-900 font-medium leading-8">Joh Doe</h3>
-                            <div className="text-center text-gray-400 text-xs font-semibold">
-                                <p>Web Developer</p>
-                            </div>
-                            <table className="text-xs my-3">
-                                <tbody><tr>
-                                    <td className="px-2 py-2 text-gray-500 font-semibold">Address</td>
-                                    <td className="px-2 py-2">Chatakpur-3, Dhangadhi Kailali</td>
-                                </tr>
-                                    <tr>
-                                        <td className="px-2 py-2 text-gray-500 font-semibold">Phone</td>
-                                        <td className="px-2 py-2">+977 9955221114</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="px-2 py-2 text-gray-500 font-semibold">Email</td>
-                                        <td className="px-2 py-2">john@exmaple.com</td>
-                                    </tr>
-                                </tbody></table>
-
-                            <div className="text-center my-3">
-                                <a className="text-xs text-indigo-500 italic hover:underline hover:text-indigo-600 font-medium" href="#">View Profile</a>
-                            </div>
-
-                        </div>
+                        {/*  */}
                     </div>
                 </div>
-
             </div>
         </div>
     );
