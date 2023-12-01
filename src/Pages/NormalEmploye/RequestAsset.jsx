@@ -1,10 +1,28 @@
 import { useQuery } from "@tanstack/react-query";
 import SectionTiltle from "../../Components/SectionTiltle";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import RequestedModal from "./RequestedModal";
+import { useState } from "react";
 
 const RequestAsset = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('All');
+
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
+
+
+
+
 
     const axiospublic = useAxiosPublic();
     const { user } = useAuth();
@@ -22,11 +40,11 @@ const RequestAsset = () => {
     });
     const yourAdmin = yours.adminEmail
     console.log(yourAdmin);
-    
+
 
 
     const axiosPublic = useAxiosPublic()
-    const { data: asssets = [], } = useQuery({
+    const { data: asssets = [], refetch } = useQuery({
         queryKey: ['requested asset'],
         queryFn: async () => {
             const res = await axiosPublic.get(`/assets-filter?email=${yours?.yourAdmin}`)
@@ -34,6 +52,52 @@ const RequestAsset = () => {
             return res.data
         },
     })
+
+    /*   ----------------------------------------------------------------
+              shorting / search/
+  ---------------------------------------------------------------- */
+
+
+
+
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+};
+
+const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+};
+
+
+const filterAndSortAssets = (assets) => {
+    // Filter by search query
+    let filteredAssets = assets.filter((asset) =>
+        asset.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    // Filter by category
+    if (selectedCategory !== 'All') {
+        filteredAssets = filteredAssets.filter((asset) => asset.type === selectedCategory);
+    }
+
+    // Sort by quantity
+   
+
+
+
+    return filteredAssets;
+};
+
+const filteredAndSortedAssets = filterAndSortAssets(asssets);
+
+
+
+/*  ----------------------------------------------------------------
+            
+---------------------------------------------------------------- */
+
+
 
 
 
@@ -46,6 +110,37 @@ const RequestAsset = () => {
                 subHeading={'---Check it out---'}
                 heading={'Request an Asset'}
             ></SectionTiltle>
+           {/* Search, Filter, and Sort Section */}
+           <div className="my-5">
+                <form className="flex flex-col md:flex-row gap-3 w-1/2 mx-auto">
+                    <div className="flex">
+                        <input
+                            type="text"
+                            placeholder="Search for the tool you like"
+                            className="w-full md:w-80 px-3 h-10 rounded-l border-2 border-[#286d39] focus:outline-none focus:border-[#286d39]"
+                            value={searchQuery}
+                            onChange={handleSearchChange}
+                        />
+                        <button
+                            type="submit"
+                            className="bg-[#286d39] text-white rounded-r px-2 md:px-3 py-0 md:py-1"
+                        >
+                            Search
+                        </button>
+                    </div>
+                    <select
+                        id="pricingType"
+                        name="pricingType"
+                        className="w-full h-10 border-2 border-[#286d39] focus:outline-none focus:border-[#286d39] text-[#286d39] rounded px-2 md:px-3 py-0 md:py-1 tracking-wider"
+                        value={selectedCategory}
+                        onChange={handleCategoryChange}
+                    >
+                        <option value="All">All Type</option>
+                        <option value="Returnable">Returnable</option>
+                        <option value="Non-returnable">Non-returnable</option>
+                    </select>
+                </form>
+            </div>
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-MD mx-8 my-12 " >
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
@@ -72,7 +167,7 @@ const RequestAsset = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {asssets?.map((asset, index) => (
+                        {filteredAndSortedAssets?.map((asset, index) => (
                             <tr key={asset._id} className="odd:bg-gray-100 even:bg-white   ">
                                 <td className="w-1/12 py-2 text-center ">{index + 1}</td>
                                 <td className="px-4 py-4 font-medium  text-gray-900 whitespace-nowrap ">
@@ -85,22 +180,25 @@ const RequestAsset = () => {
                                     {asset.type}
                                 </td>
                                 <td className="px-4 md:text-[16px] py-4 text-center">
-                                    {asset.quantity}
+                                    {asset.quantity > 0 ? 'Available' : 'Out of Stock'}
                                 </td>
+
 
                                 <td className="px-4 md:text-[16px] py-4 text-center">
 
-                                    <Link to={`/adminHome/update-assets/${asset._id}`}>
-                                        {asset?.quantity >= 0 ? <button
-
+                                    <div>
+                                        {asset?.quantity > 0 ? <button
+                                            onClick={openModal}
                                             className="btn hover:font-semibold text-[16px] btn-md hover:bg-[#205427db] bg-[#23611b] rounded-full py-2 text-emerald-50 ">Request
 
                                         </button> : <button
                                             disabled
-                                            className="btn hover:font-semibold text-[16px] btn-md hover:bg-[#205427db] bg-[#23611b] rounded-full py-2 text-emerald-50 ">Request
+                                            className="cursor-none btn hover:font-semibold text-[16px] btn-md hover:bg-[#205427db] bg-[#23611b] rounded-full py-2 text-emerald-50 ">Request
 
                                         </button>}
-                                    </Link>
+                                        <RequestedModal asset={asset} isOpen={isModalOpen} closeModal={closeModal} refetch={refetch} />
+
+                                    </div>
                                 </td>
 
                             </tr>

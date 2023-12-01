@@ -24,7 +24,7 @@ const MyTeam = () => {
 
   /* admin api */
   const { data: teamMember = [], isLoading: teamLoading } = useQuery({
-    queryKey: ["teams",],
+    queryKey: ["teams", yours?.adminEmail],
     queryFn: async () => {
       const res = await axiospublic.get(`/add-team?email=${yours?.adminEmail}`);
       console.log('your data', res.data);
@@ -44,7 +44,7 @@ const MyTeam = () => {
   return (
     <div className="max-w-screen-xl px-4 mx-auto">
       {/* Upcoming Evends */}
-      <div className="flex gap-4 b">
+      <div className="flex  justify-evenly gap-4 b">
         <section className="w-7/12 ">
           <SectionTiltle subHeading={"All of my team member -"} heading={"upcomming events"} />
           <UpcommingEvents teamMember={teamMember} />

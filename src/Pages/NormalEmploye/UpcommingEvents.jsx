@@ -54,12 +54,12 @@ const UpcomingEvents = ({ teamMember }) => {
 
       <div className=" rounded-3xl ">
         {birthdayInfo.map((info, index) => (
-          <div key={index} className="flex justify-start items-center my-7 rounded-3xl bg-[#334d39]">
+          <div key={index} className="flex justify-center items-center my-7 rounded-3xl bg-[#334d39]">
             <div className="w-4/12  p-4">
-              <img className=" object-cover rounded-full shadow-lg shadow-slate-200" src={info.image} alt={`${info.name}'s profile`} />
+              <img className=" w-2/3 object-cover rounded-full shadow-lg shadow-slate-200" src={info.image} alt={`${info.name}'s profile`} />
             </div>
             <div className="w7/12 p-4 text-gray-50 space-y-1">
-              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold ">𝑼𝒑𝒄𝒐𝒎𝒊𝒏𝒈 𝑩𝒊𝒓𝒕𝒉𝒅𝒂𝒚 🎉 </h2>
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold ">Upcoming  𝓑𝓲𝓻𝓽𝓱𝓭𝓪𝔂 </h2>
               <div className="space-y- py-5">
                 <p className="md:text-xl font-semibold">Name: {info.name}</p>
                 <p>Date of Birth: {info.birthdayDate}</p>
