@@ -44,7 +44,7 @@ const MyEmployeeList = () => {
 
                     <div key={team._id} >
 
-                        <TeamList team={team} refetch={refetch} index={index} > sdfsdf{team.legth}</TeamList>
+                        <TeamList team={team} refetch={refetch} index={index} ></TeamList>
                     </div>
                 ))}
             </div>

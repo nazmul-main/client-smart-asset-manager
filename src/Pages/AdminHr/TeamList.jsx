@@ -13,10 +13,11 @@ const TeamList = ({ team, index, refetch}) => {
     const currnetUser = user.email;
     console.log(currnetUser);
 
-    const { name, role, image , adminEmail} = team;
+    const { name, role, image , adminEmail ,_id} = team;
+    console.log(adminEmail);
 
 
-    const habdleDelete = (adminEmail) => {
+    const habdleDelete = (_id) => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -27,7 +28,7 @@ const TeamList = ({ team, index, refetch}) => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.delete(`/add-team-delete/${adminEmail}`)
+                axiosSecure.delete(`/add-team-delete/${_id}`)
                     .then(res => {
                         console.log(res.data);
                         if (res.data.deletedCount > 0) {
@@ -88,7 +89,7 @@ const TeamList = ({ team, index, refetch}) => {
                             <td className="px-4 md:text-[16px] py-4 text-center">
                                 
                                     <button
-                                        onClick={() =>habdleDelete(adminEmail)}
+                                        onClick={() =>habdleDelete(_id)}
                                         className="btn hover:font-semibold text-[16px] hover:text-xl btn-md hover:bg-[#d14249] bg-[#d14249] rounded-full py-2"
                                     >
                                         <FaTrashAlt className="text-white text-center" />

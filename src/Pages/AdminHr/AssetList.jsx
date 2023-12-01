@@ -10,8 +10,10 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const AssetList = () => {
+    const [item ,setItem] = useState(' ') 
 
-    const { user } = useAuth;
+    const { user } = useAuth();
+    const currentuser = user?.email
     const axiosPublic = useAxiosSecure()
 
     const [searchQuery, setSearchQuery] = useState('');
@@ -20,7 +22,9 @@ const AssetList = () => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const openModal = () => {
+    const openModal = (asset) => {
+        setItem(asset)
+        console.log(asset);
         setIsModalOpen(true);
     };
 
@@ -38,7 +42,7 @@ const AssetList = () => {
     //     },
     // })
 
-    const assetapi = `http://localhost:5001/api/v1/assets?email=${user?.email}`
+    const assetapi = `http://localhost:5001/api/v1/assets-filter?email=${currentuser}`
 
     const assetes = async () => {
         try {
@@ -52,12 +56,12 @@ const AssetList = () => {
 
     const { data: asssets, isLoading, refetch } = useQuery(
         {
-            queryKey: [`/assets?email=${user?.email}`],
+            queryKey: [`/assets-filter?email=${currentuser}`],
             queryFn: assetes
         }
-        )
-        console.log(asssets)
-        if (isLoading) {
+    )
+    console.log(asssets)
+    if (isLoading) {
         return <p>loading...</p>
     }
 
@@ -67,7 +71,7 @@ const AssetList = () => {
   ---------------------------------------------------------------- */
 
 
-  
+
 
 
     const handleSearchChange = (e) => {
@@ -98,7 +102,7 @@ const AssetList = () => {
             if (sortBy !== '') {
                 return a.quantity - b.quantity;
             }
-          
+
 
             return 0;
         });
@@ -237,12 +241,12 @@ const AssetList = () => {
                             <td className="px-4 py-4 font-medium  text-gray-900 whitespace-nowrap ">
                                 <img className='w-12 h-12 mx-auto' src={asset.image} alt="" />
                             </td>
-                           <div>
-                           <td className="px-4 md:text-[16px]  py-4  text-center font-medium text-gray-900 whitespace-nowrap ">
-                                {asset.name}
-                            </td>
-                            <p></p>
-                           </div>
+                            <div>
+                                <td className="px-4 md:text-[16px]  py-4  text-center font-medium text-gray-900 whitespace-nowrap ">
+                                    {asset.name}
+                                </td>
+                                <p></p>
+                            </div>
                             <td className="px-4 md:text-[16px] py-4 text-center">
                                 {asset.type}
                             </td>
@@ -256,10 +260,10 @@ const AssetList = () => {
 
 
                                 <button className="text-white btn hover:font-semibold text-[16px] hover:text-xl btn-md hover:bg-[#205427db] bg-[#23611b] rounded-full py-2"
-                                    onClick={openModal}>
+                                    onClick={() =>openModal(asset)}>
                                     <FaEdit></FaEdit>
                                 </button>
-                                <ModalAssetUpdate asset={asset} isOpen={isModalOpen} closeModal={closeModal} refetch={refetch} />
+
                             </td>
                             <td className="px-4 py-4 text-center">
                                 <button
@@ -273,6 +277,7 @@ const AssetList = () => {
                     ))}
                 </tbody>
             </table>
+            {item && <ModalAssetUpdate asset={item} isOpen={isModalOpen} closeModal={closeModal} refetch={refetch} />}
 
         </div>
     );

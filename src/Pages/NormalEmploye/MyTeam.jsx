@@ -2,33 +2,39 @@ import { useQuery } from "@tanstack/react-query";
 import SectionTiltle from "../../Components/SectionTiltle";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAuth from "../../Hooks/useAuth";
+import UpcommingEvents from "./UpcommingEvents";
 
 const MyTeam = () => {
   const axiospublic = useAxiosPublic();
   const { user } = useAuth();
-  const email = user?.email;
+  console.log(user);
+  const cur = user?.email;
+  console.log(cur);
   // console.log(currentUser);
 
   const { data: yours = [] } = useQuery({
-    queryKey: ["users"],
+    queryKey: ["usersDD"],
     queryFn: async () => {
-      const res = await axiospublic.get(`/add-team-one?email=${email}`);
-      console.log('your data', res.data);
+      const res = await axiospublic.get(`/add-team-one?email=${cur}`);
+      console.log('your adminEmail', res.data.adminEmail);
       return res.data;
     },
   });
 
-  const adminEmail = yours?.adminEmail
 
-  /* admin apo */
-  const { data: teamMember = [] } = useQuery({
-    queryKey: ["teams"],
+  /* admin api */
+  const { data: teamMember = [], isLoading: teamLoading } = useQuery({
+    queryKey: ["teams",],
     queryFn: async () => {
-      const res = await axiospublic.get(`/add-team?email=${adminEmail}`);
+      const res = await axiospublic.get(`/add-team?email=${yours?.adminEmail}`);
       console.log('your data', res.data);
       return res.data;
     },
   });
+  if (teamLoading) {
+    return <p>Team Member is Loading...</p>
+  }
+  console.log(teamMember);
 
 
 
@@ -36,45 +42,56 @@ const MyTeam = () => {
 
 
   return (
-    <div className="max-w-screen-xl px-4 md:px-12 mx-auto">
+    <div className="max-w-screen-xl px-4 mx-auto">
       {/* Upcoming Evends */}
-      <section>
-        <SectionTiltle subHeading={"All of my team member"} heading={"My team"} />
-   
-        <div className="md:grid-cols-1  lg:grid-cols-2 grid gap-10  " >
-          {
-            teamMember?.map((teamMember, index) =>
-              <div key={teamMember?._id} className="w-full h-34">
+      <div className="flex gap-4 b">
+        <section className="w-7/12 ">
+          <SectionTiltle subHeading={"All of my team member -"} heading={"upcomming events"} />
+          <UpcommingEvents teamMember={teamMember} />
+        </section>
 
-                <div className="   w-full-col justify-center items-center gap-6   p-6 shadow-md shadow-[#296835] rounded-xl sm:px-12 bg-[#ecfdef5e]">
-                <h2 className="w-10 h-10 text-center pt-2 bg-gray-700 text-xl font-bold rounded-full text-white">{index +1}</h2>
-                  <img
-                    src="https://source.unsplash.com/150x150/?portrait?3"
-                    alt=""
-                    className="w-32 h-32 mx-auto rounded-full "
-                  />
-                  <div className="space-y-4 text-center divide-y ">
-                    <div className="my-2 space-y-1">
-                      <h2 className="text-xl font-semibold sm:text-2xl"><span className="font-bold">Name:</span>{teamMember.name}</h2>
-                      <h2 className="px-5 text-xs sm:text-base "><span className="font-bold px-2">Role:</span>{teamMember.role}</h2>
-                      
-                      {teamMember.bithdayDate ?
-                        <p className="px-5 text-xs sm:text-base "><span className="font-bold">Birth:</span>{teamMember.bithdayDate}</p>
-                        :
-                        <p><span className="font-bold">Birth:</span> Empty  </p>
-                      }
-                      <button></button>
+
+        {/* My team */}
+        <section className="row-span-">
+          <SectionTiltle subHeading={"All of my team member -"} />
+
+          <div className="md:grid-cols-1   lg:grid-cols-1 grid gap-10  " >
+            {
+              teamMember?.map((teamMember, index) =>
+                <div
+                  key={teamMember?._id} className="w-full h-34">
+
+                  <div className="   w-full-col justify-center items-center gap-6   p-6 shadow-md shadow-[#296835] rounded-xl sm:px-12 bg-[#ecfdef5e]">
+                    <th className="w-10 h-10 text-center pt-2 bg-gray-700 text-xl font-bold rounded-full text-white">{index + 1}</th>
+                    <img
+                      src="https://source.unsplash.com/150x150/?portrait?3"
+                      alt=""
+                      className="w-24 h-24 mx-auto rounded-full "
+                    />
+                    <div className="space-y-4 text-center divide-y ">
+                      <div className="my-2 space-y-1">
+                        <h2 className="text-xl font-semibold sm:text-2xl"><span className="font-bold"></span>{teamMember.name}</h2>
+                        <h2 className="px-5 text-xs sm:text-base "><span className="font-bold px-2">Role:</span>{teamMember.role}</h2>
+
+                        {teamMember.bithdayDate ?
+                          <p className="px-5 text-xs sm:text-base "><span className="font-bold">Birth:</span>{teamMember.bithdayDate}</p>
+                          :
+                          <p><span className="font-bold">Birth:</span> Empty  </p>
+                        }
+
+                      </div>
+                      {/*  */}
                     </div>
-                    {/*  */}
+
                   </div>
 
-                </div>
+                </div>)
+            }
+          </div>
 
-              </div>)
-          }
-        </div>
+        </section>
+      </div>
 
-      </section>
     </div>
   );
 };

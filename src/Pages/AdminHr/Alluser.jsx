@@ -7,20 +7,23 @@ import useAuth from "../../Hooks/useAuth";
 
 
 const Alluser = ({ asset, index, admin, refetch }) => {
-    const {user} = useAuth;
     const axiosSecure = useAxiosSecure()
+    const {user} = useAuth();
+    console.log(user);
+    const adminEmail = user?.email
+    console.log(adminEmail);
 
-    const { image, name, role, email, _id, bithdayDate } = asset;
-    // const adminInfo = {adminEmail: admin?.email, coLogo: admin?.CoLogo, }
-    const adminEmail = admin?.email;
-    const companyLogo = admin?.CoLogo
-    console.log(adminEmail, companyLogo);
+    const { image, name, role, email,  _id, bithdayDate } = asset;
+    console.log(asset);
+    const { CoLogo } = admin;
+    console.log(CoLogo);
 
 
-    const handleFoodCard = () => {
+    const handleAddEmployee = () => {
         const teamInfo = {
-            userId: _id, email, image, name, role, adminEmail, companyLogo, bithdayDate
+            userId: _id, email, image, name, role:"employee",  adminEmail, CoLogo, bithdayDate
         }
+        console.log(teamInfo);
 
         axiosSecure.post("/add-team", teamInfo)
             .then((res) => {
@@ -95,7 +98,7 @@ const Alluser = ({ asset, index, admin, refetch }) => {
                                     </button>
                                 ) : (
                                     <button
-                                        onClick={handleFoodCard}
+                                        onClick={handleAddEmployee}
                                         className="btn hover:font-semibold text-[16px] hover:text-xl btn-md hover:bg-[#205427db] bg-[#23611b] rounded-full py-2"
                                     >
                                         <FaAddressBook className="text-white text-center" />

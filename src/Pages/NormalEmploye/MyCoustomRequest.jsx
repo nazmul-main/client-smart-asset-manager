@@ -7,8 +7,8 @@ const MyCoustomRequest = () => {
     const axiosPublic = useAxiosPublic()
 
    
-    const { data: asssets = [], refetch} = useQuery({
-        queryKey: ['users'],
+    const { data: asssets = [], refetch, isLoading:asetLoadingg} = useQuery({
+        queryKey: ['coustomAsset'],
         queryFn: async () => {
             const res = await axiosPublic.get('/coustom-assets')
             return res.data
@@ -18,7 +18,7 @@ const MyCoustomRequest = () => {
 
 
 
-    if (!asssets) {
+    if (asetLoadingg) {
         return <p>Loading...</p>;
     }
 

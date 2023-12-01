@@ -2,18 +2,34 @@ import { useQuery } from "@tanstack/react-query";
 import SectionTiltle from "../../Components/SectionTiltle";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 const RequestAsset = () => {
 
+    const axiospublic = useAxiosPublic();
+    const { user } = useAuth();
+    console.log(user);
+    const cur = user?.email;
+    console.log(cur);
+    // console.log(currentUser);
 
-
+    const { data: yours = [] } = useQuery({
+        queryKey: ["assetAdmin", cur],
+        queryFn: async () => {
+            const res = await axiospublic.get(`/add-team-one?email=${cur}`);
+            return res.data;
+        },
+    });
+    const yourAdmin = yours.adminEmail
+    console.log(yourAdmin);
+    
 
 
     const axiosPublic = useAxiosPublic()
     const { data: asssets = [], } = useQuery({
-        queryKey: ['users'],
+        queryKey: ['requested asset'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/assets')
+            const res = await axiosPublic.get(`/assets-filter?email=${yours?.yourAdmin}`)
             console.log(res.data);
             return res.data
         },

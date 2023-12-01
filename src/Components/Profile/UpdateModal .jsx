@@ -69,20 +69,20 @@ const UpdateModal = ({ isOpen, closeModal, yours, refetch }) => {
                     <h2 className="text-2xl font-semibold mb-4">Update Information</h2>
                     <h2 className="text-2xl font-semibold mb-4"></h2>
                     <div className=" ">
-                        {/* <div className="mb-4 w-full"> */}
-                        {/* <label className="block text-sm font-medium text-gray-600 text-start py-1"> Name</label> */}
+                        <div className="mb-4 w-full">
+                        <label className="block text-sm font-medium text-gray-600 text-start py-1"> Name</label>
                         <input defaultValue={adminname} type="text" id="assetName" name="adminname" className="mt-1 p-2 w-full border rounded-md" />
-                        {/* </div> */}
+                        </div>
 
 
-                        {/* <div className="mb-4 w-full"> */}
-                        {/* <label className="block text-sm font-medium text-gray-600 text-start py-1">Email</label> */}
+                        <div className="mb-4 w-full">
+                        <label className="block text-sm font-medium text-gray-600 text-start py-1">Email</label>
                         <input defaultValue={email} readOnly type="text" name="email" className="mt-1 p-2 w-full border rounded-md" />
-                        {/* </div> */}
-                        {/* <div className="mb-4 w-full"> */}
-                        {/* <label className="block text-sm font-medium text-gray-600 text-start py-1">Birthday</label> */}
+                        </div>
+                        <div className="mb-4 w-full">
+                        <label className="block text-sm font-medium text-gray-600 text-start py-1">Birthday</label>
                         <input defaultValue={bithdayDate} type="text" name="bithdayDate" className="mt-1 p-2 w-full border rounded-md" />
-                        {/* </div> */}
+                        </div>
                     </div>
                     <div>
                         <button

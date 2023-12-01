@@ -35,11 +35,11 @@ const AdminHrProfile = () => {
     return (
         <div className="flex justify-center items-center min-h-screen">
             <div>
-                <div className="flex flex-col justify-center max-w-xs p-6 shadow-2xl shadow-[#296835] rounded-xl sm:px-12 bg-[#ecfdef5e]">
-                    <img src="https://source.unsplash.com/150x150/?portrait?3" alt="" className="w-32 h-32 mx-auto rounded-full " />
-                    <div className="space-y-4 text-center divide-y ">
-                        <div className="my-2 space-y-1">
-                            <h2 className="text-xl font-semibold sm:text-2xl">{yours?.adminname}</h2>
+                <div className="  flex gap-12 justify-center items-center  p-6 shadow-2xl shadow-[#296835] rounded-xl sm:px-12 bg-[#ecfdef5e] space-y-10">
+                    <img src="https://source.unsplash.com/150x150/?portrait?3" alt="" className="md:w-52 md:h-52 h-32 w-32 shadow-gray-700 ck shadow-md mx-auto rounded-full " />
+                    <div className="space-y-6 text-center divide-y  ">
+                        <div className="my-2 space-y-5">
+                            <h2 className="text-4xl font-semibold ">{yours?.adminname}</h2>
                             <h2 className="px-5 text-xs sm:text-base ">{yours?.email}</h2>
                             <p className="px-5 text-xs sm:text-base ">Birthday:{yours?.bithdayDate}</p>
                             <button className="text-white btn hover:font-semibold text-[16px] hover:text-xl btn-md hover:bg-[#205427db] bg-[#23611b] rounded-full py-2"

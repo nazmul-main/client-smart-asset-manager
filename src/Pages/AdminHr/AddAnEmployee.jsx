@@ -11,6 +11,8 @@ const AddAnEmployee = () => {
     const axiosSecure = useAxiosSecure();
     const currentUser = useAuth();
     const cur = currentUser.user
+    console.log(cur);
+
 
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
@@ -19,12 +21,23 @@ const AddAnEmployee = () => {
             console.log(res.data);
             return res.data;
         },
+
     });
 
-    const onlyUser = users?.filter((ouser) => ouser.role !== 'admin');
-    const admin = users?.find((alluser) => alluser.email === cur.email && alluser.role === 'admin');
+    // const { data: teamMember = [], refetch } = useQuery({
+    //     queryKey: ['users'],
+    //     queryFn: async () => {
+    //         const res = await axiosSecure.get('/add-team')
+    //         console.log(res.data);
+    //         return res.data;
+    //     },
+    // });
+    const onlyUser = users && users?.length > 0 && users?.filter((ouser) => ouser.role !== 'admin' && ouser.role !== 'employee');
+    const admin = users && users?.length > 0 && users?.find((alluser) => alluser.email === cur.email && alluser.role === 'admin');
+    console.log(admin);
+    
 
-   
+
 
     return (
         <div className="md:w-10/12 mx-auto">
@@ -46,8 +59,8 @@ const AddAnEmployee = () => {
                     ></SectionTiltle>
 
 
-                    {onlyUser?.map((asset, index) => (
-                        <Alluser key={asset._id} asset={asset} refetch={refetch}  index={index} admin={admin} ></Alluser>
+                    { users && users?.length > 0 && onlyUser?.map((asset, index) => (
+                        <Alluser key={asset._id} asset={asset} refetch={refetch} index={index} admin={admin} ></Alluser>
                     ))}
 
 
