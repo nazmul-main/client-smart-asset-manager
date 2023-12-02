@@ -8,9 +8,9 @@ const RequestedModal = ({ isOpen, closeModal, asset }) => {
     const { user } = useAuth()
     const axiosPublic = useAxiosPublic()
 
-    const requesterEamil = user.email;
-    const requesterName = user.displayName;
-    const { name, type } = asset;
+    const requesterEamil = user?.email;
+    const requesterName = user?.displayName;
+    const { name, type, image } = asset;
     const currentDate = moment().format('YYYY-MM-DD');
     const status = 'pending';
 
@@ -29,6 +29,7 @@ const RequestedModal = ({ isOpen, closeModal, asset }) => {
 
         const reqInfo = {
             assetName: name,
+            assetImage: image,
             emailRequester: requesterEamil,
             nameRequester: requesterName,
             requestDate: currentDate,
