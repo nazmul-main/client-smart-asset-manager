@@ -17,9 +17,9 @@ const ReqCart = ({ asset, refetch }) => {
 
     return (
         <div>
-            <div className="flex  flex-col items-center bg-white border border-gray-200 rounded-lg md:flex-row md:max-w-xl hover:bg-gray-100 shadow-md ">
-                <div>
-                    <img className="object-cover bg-red-500  rounded-t-lg md:h-auto w-48 md:rounded-none md:rounded-s-lg" src={assetImage} alt="" />
+            <div className=" items-center bg-white border border-gray-200 rounded-lg md:flex-row md:max-w-xl hover:bg-gray-100 shadow-md  ">
+                <div className="h-52 ">
+                    <img className=" w-full  h-full object-cover bg-red-500  rounded-t-lg md:h-auto md:rounded-none md:rounded-s-lg" src={assetImage} alt="" />
                 </div>
                 <div className="flex flex-col justify-between items-start p-4 leading-normal">
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{assetName}</h5>

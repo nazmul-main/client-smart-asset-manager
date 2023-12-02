@@ -12,11 +12,11 @@ const Pending = () => {
         queryKey: ['all--asset-pending'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/assets-request-filter?email=${currUser}`);
-            console.log(res.data);
             return res.data;
         },
     });
     const pendingData = assets?.filter(asset => asset?.status === 'pending');
+    const recentAssets = pendingData.slice(0, 4);
 
     return (
         <div className="">
@@ -47,8 +47,8 @@ const Pending = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {pendingData.map((asset, index) => (
-                         <tr key={asset._id} className="odd:bg-gray-100 even:bg-white   ">
+                    {recentAssets.map((asset, index) => (
+                        <tr key={asset._id} className="odd:bg-gray-100 even:bg-white   ">
                             <td className="w-1/12 py-2 text-center ">{index + 1}</td>
                             <td className="w-1/12 py-2 text-center ">
                                 <img className="w-14 h-14" src={asset?.assetImage} alt="" />
