@@ -4,7 +4,6 @@ import Swal from 'sweetalert2';
 
 const ModalAssetUpdate = ({ isOpen, closeModal, asset, refetch }) => {
     const { name, type, quantity, _id } = asset
-    console.log(_id);
     const handleCancelClick = () => {
         closeModal();
     };
@@ -22,7 +21,6 @@ const ModalAssetUpdate = ({ isOpen, closeModal, asset, refetch }) => {
             type: type,
             quantity: quantity,
         };
-        console.log(rqpAsset);
 
 
         fetch(`http://localhost:5001/api/v1/assets/update-assets-done/${_id}`, {

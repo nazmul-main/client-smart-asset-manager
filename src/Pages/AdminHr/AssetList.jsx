@@ -32,34 +32,15 @@ const AssetList = () => {
         setIsModalOpen(false);
     };
 
-
-    // const axiosPublic = useAxiosPublic()
-    // const { data: asssets = [], refetch } = useQuery({
-    //     queryKey: ['users'],
-    //     queryFn: async () => {
-    //         const res = await axiosPublic.get('/assets')
-    //         return res.data
-    //     },
-    // })
-
-    const assetapi = `http://localhost:5001/api/v1/assets-filter?email=${currentuser}`
-
-    const assetes = async () => {
-        try {
-            const response = await fetch(assetapi);
-            const data = await response.json();
-            return data;
-        } catch (error) {
-            throw new Error('Error fetching data: ' + error.message);
-        }
-    };
-
-    const { data: asssets, isLoading, refetch } = useQuery(
-        {
-            queryKey: [`/assets-filter?email=${currentuser}`],
-            queryFn: assetes
-        }
-    )
+    
+    const { data: asssets = [], refetch , isLoading} = useQuery({
+        queryKey: ['filter_asset_email'],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/assets-filter?email=${currentuser}`)
+            console.log(res.data);
+            return res.data
+        },
+    })
     console.log(asssets)
     if (isLoading) {
         return <p>loading...</p>

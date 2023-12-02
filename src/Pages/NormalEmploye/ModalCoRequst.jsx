@@ -29,7 +29,6 @@ const ModalCoRequst = ({ isOpen, closeModal, asset, refetch }) => {
         const assetType = form.assetType.value;
         const assetImage = form.assetImage.value;
         const additionalInfo = form.additionalInfo.value;
-        console.log(assetName, assetType, assetImage, price, additionalInfo);
 
         const rqpAsset = {
             assetName: assetName,

@@ -10,7 +10,6 @@ const AddAnAsset = () => {
 
     /* Find Current date */
     const date = new Date();
-    console.log(date);
     const {user} = useAuth();
     const adminEmail = user.email
 
@@ -19,7 +18,6 @@ const AddAnAsset = () => {
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const day = date.getDate().toString().padStart(2, '0');
     const currentDate = `${day}-${month}-${lastTwoDigits}`;
-    console.log(currentDate);
 
 
     /* Igame post on imgBB */
@@ -52,7 +50,6 @@ const AddAnAsset = () => {
             adminEmail: adminEmail,
         };
 
-        console.log(postData);
 
 
         // Send to Backend
@@ -68,7 +65,6 @@ const AddAnAsset = () => {
                     });
 
                 }
-                console.log(res.data);
             })
             .catch(error => {
                 console.log(error);

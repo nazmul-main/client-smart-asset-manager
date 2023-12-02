@@ -9,9 +9,12 @@ const RequestAsset = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All');
+    const [item, setItem] = useState(' ')
 
 
-    const openModal = () => {
+    const openModal = (asset) => {
+        setItem(asset)
+        console.log(asset);
         setIsModalOpen(true);
     };
 
@@ -35,22 +38,24 @@ const RequestAsset = () => {
         queryKey: ["assetAdmin", cur],
         queryFn: async () => {
             const res = await axiospublic.get(`/add-team-one?email=${cur}`);
+            console.log(res.data);
             return res.data;
         },
     });
-    const yourAdmin = yours.adminEmail
+    const yourAdmin = yours?.adminEmail
     console.log(yourAdmin);
 
 
 
     const axiosPublic = useAxiosPublic()
-    const { data: asssets = [], refetch } = useQuery({
-        queryKey: ['requested asset'],
+    const { data: asssets, refetch } = useQuery({
+        queryKey: ['requestedasset', yourAdmin],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/assets-filter?email=${yours?.yourAdmin}`)
+            const res = await axiosPublic.get(`/assets-filter?email=${yourAdmin}`)
             console.log(res.data);
             return res.data
         },
+        initialData: []
     })
 
     /*   ----------------------------------------------------------------
@@ -61,41 +66,41 @@ const RequestAsset = () => {
 
 
 
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-};
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
+    };
 
-const handleCategoryChange = (e) => {
-    setSelectedCategory(e.target.value);
-};
-
-
-const filterAndSortAssets = (assets) => {
-    // Filter by search query
-    let filteredAssets = assets.filter((asset) =>
-        asset.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-    // Filter by category
-    if (selectedCategory !== 'All') {
-        filteredAssets = filteredAssets.filter((asset) => asset.type === selectedCategory);
-    }
-
-    // Sort by quantity
-   
+    const handleCategoryChange = (e) => {
+        setSelectedCategory(e.target.value);
+    };
 
 
+    const filterAndSortAssets = (assets) => {
+        // Filter by search query
+        let filteredAssets = assets.filter((asset) =>
+            asset.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
 
-    return filteredAssets;
-};
+        // Filter by category
+        if (selectedCategory !== 'All') {
+            filteredAssets = filteredAssets.filter((asset) => asset.type === selectedCategory);
+        }
 
-const filteredAndSortedAssets = filterAndSortAssets(asssets);
+        // Sort by quantity
 
 
 
-/*  ----------------------------------------------------------------
-            
----------------------------------------------------------------- */
+
+        return filteredAssets;
+    };
+
+    const filteredAndSortedAssets = filterAndSortAssets(asssets);
+
+
+
+    /*  ----------------------------------------------------------------
+                
+    ---------------------------------------------------------------- */
 
 
 
@@ -110,8 +115,8 @@ const filteredAndSortedAssets = filterAndSortAssets(asssets);
                 subHeading={'---Check it out---'}
                 heading={'Request an Asset'}
             ></SectionTiltle>
-           {/* Search, Filter, and Sort Section */}
-           <div className="my-5">
+            {/* Search, Filter, and Sort Section */}
+            <div className="my-5">
                 <form className="flex flex-col md:flex-row gap-3 w-1/2 mx-auto">
                     <div className="flex">
                         <input
@@ -188,7 +193,8 @@ const filteredAndSortedAssets = filterAndSortAssets(asssets);
 
                                     <div>
                                         {asset?.quantity > 0 ? <button
-                                            onClick={openModal}
+                                            // onClick={openModal}
+                                            onClick={() => openModal(asset)}
                                             className="btn hover:font-semibold text-[16px] btn-md hover:bg-[#205427db] bg-[#23611b] rounded-full py-2 text-emerald-50 ">Request
 
                                         </button> : <button
@@ -196,7 +202,6 @@ const filteredAndSortedAssets = filterAndSortAssets(asssets);
                                             className="cursor-none btn hover:font-semibold text-[16px] btn-md hover:bg-[#205427db] bg-[#23611b] rounded-full py-2 text-emerald-50 ">Request
 
                                         </button>}
-                                        <RequestedModal asset={asset} isOpen={isModalOpen} closeModal={closeModal} refetch={refetch} />
 
                                     </div>
                                 </td>
@@ -205,6 +210,7 @@ const filteredAndSortedAssets = filterAndSortAssets(asssets);
                         ))}
                     </tbody>
                 </table>
+                {item && <RequestedModal asset={item} isOpen={isModalOpen} closeModal={closeModal} refetch={refetch} />}
             </div>
 
         </div>

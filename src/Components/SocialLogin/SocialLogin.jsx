@@ -16,16 +16,13 @@ const SocialLogin = () => {
 
         googleLogin()
             .then(res => {
-                console.log(res.user);
                 const userInfo = {
                     email: res.user?.email,
                     name: res.user?.displayName
                 }
-                console.log(userInfo);
 
                 axiosPublic.post('/users-employee', userInfo)
                     .then(res => {
-                        console.log(res.data);
                         if (res.data.insertedId) {
                             Swal.fire({
                                 position: "center",

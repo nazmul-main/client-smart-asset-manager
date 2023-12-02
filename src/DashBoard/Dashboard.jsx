@@ -11,7 +11,6 @@ const Dashboard = () => {
     if(isLoading){
         return <p>Loadeing...</p>
     }
-    console.log(isAdmin);
 
 
     return (

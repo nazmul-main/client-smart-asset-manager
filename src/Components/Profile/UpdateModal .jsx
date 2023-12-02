@@ -21,7 +21,6 @@ const UpdateModal = ({ isOpen, closeModal, yours, refetch }) => {
         const bithdayDate = form.bithdayDate.value;
         const email = form.email.value;
 
-        console.log(adminname, email, bithdayDate);
 
 
         const rqpAsset = {
@@ -30,7 +29,6 @@ const UpdateModal = ({ isOpen, closeModal, yours, refetch }) => {
             bithdayDate: bithdayDate,
 
         };
-        console.log(rqpAsset);
 
 
         fetch(`http://localhost:5001/api/v1/all-users-update/${_id}`, {

@@ -11,7 +11,6 @@ const AdminHrProfile = () => {
     const { user } = useAuth();
 
     const currentUser = user?.email;
-    console.log(currentUser);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -28,7 +27,6 @@ const AdminHrProfile = () => {
         queryKey: ["users"],
         queryFn: async () => {
             const res = await axiospublic.get(`/all-users-single?email=${currentUser}`);
-            console.log('your data', res.data);
             return res.data;
         },
     });

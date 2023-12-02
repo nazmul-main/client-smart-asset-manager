@@ -30,7 +30,6 @@ const TeamList = ({ team, index, refetch}) => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/add-team-delete/${_id}`)
                     .then(res => {
-                        console.log(res.data);
                         if (res.data.deletedCount > 0) {
 
                             Swal.fire({
