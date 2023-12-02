@@ -3,10 +3,12 @@ import useAuth from "../../Hooks/useAuth";
 import moment from 'moment';
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const RequestedModal = ({ isOpen, closeModal, asset }) => {
     const { user } = useAuth()
     const axiosPublic = useAxiosPublic()
+    const navigate = useNavigate()
 
     const requesterEamil = user?.email;
     const requesterName = user?.displayName;
@@ -53,10 +55,9 @@ const RequestedModal = ({ isOpen, closeModal, asset }) => {
                     });
                 }
                 console.log(res.data);
+
             })
-            .catch(error => {
-                console.log(error);
-            });
+        navigate('/dashboard/requestAsset')
 
 
 
@@ -65,10 +66,10 @@ const RequestedModal = ({ isOpen, closeModal, asset }) => {
     return (
         <div className="fixed inset-0 z-50 overflow-auto bg-gray-800 bg-opacity-40 flex items-center justify-center">
             <form onSubmit={handleRequest}>
-                <div className="bg-white rounded-md p-8 max-w-md mx-auto shadow-lg">
+                <div className="bg-white rounded-md px-8 py-3 max-w-md mx-auto shadow-lg ">
                     <h2 className="text-2xl font-semibold mb-4"> Additional Notes 📝</h2>
                     <div className="mr-2">
-                        <textarea name="note" rows={5} cols={50} className="outline-none border border-black p-2" placeholder="Provide Some Notes" />
+                        <textarea name="note" rows={5} cols={45} className="outline-none border border-black p-2" placeholder="Provide Some Notes" />
                     </div>
                     <div className="py-3">
                         <button

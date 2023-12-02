@@ -139,7 +139,7 @@ const AddAnAsset = () => {
                                     id="countries" className="bg-gray-50 border border-gray-300  rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   ">
                                     <option selected>Choose a Type</option>
                                     <option value="Returnable">Returnable </option>
-                                    <option value=" Non-returnable"> Non-returnable </option>
+                                    <option value=" Non-returnable">Non-returnable </option>
 
                                 </select>
                                 {errors.type && <span className="text-red-600">Name is required</span>}

@@ -64,7 +64,7 @@ const MyTeam = () => {
                   <div className="   w-full-col justify-center items-center gap-6   p-6 shadow-md shadow-[#296835] rounded-xl sm:px-12 bg-[#ecfdef5e]">
                     <th className="w-10 h-10 text-center pt-2 bg-gray-700 text-xl font-bold rounded-full text-white">{index + 1}</th>
                     <img
-                      src="https://source.unsplash.com/150x150/?portrait?3"
+                      src={teamMember?.image ? teamMember.image : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhyhj1gUUYu1c8817GfPwApJbYzW9lJdjSXQ&usqp=CAU'}
                       alt=""
                       className="w-24 h-24 mx-auto rounded-full "
                     />

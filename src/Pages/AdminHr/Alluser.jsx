@@ -21,7 +21,7 @@ const Alluser = ({ asset, index, admin, refetch }) => {
 
     const handleAddEmployee = () => {
         const teamInfo = {
-            userId: _id, email, image, name, role:"employee",  adminEmail, CoLogo, bithdayDate
+            userId: _id, email, image, name, role:"employee",  adminEmail:adminEmail, CoLogo, bithdayDate
         }
         console.log(teamInfo);
 

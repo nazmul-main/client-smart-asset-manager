@@ -142,7 +142,7 @@ const RequestAsset = () => {
                     >
                         <option value="All">All Type</option>
                         <option value="Returnable">Returnable</option>
-                        <option value="Non-returnable">Non-returnable</option>
+                        <option value="Non-returnable"> Non-returnable</option>
                     </select>
                 </form>
             </div>

@@ -1,21 +1,69 @@
 
-import {  FaPrint } from "react-icons/fa";
+import { FaPrint } from "react-icons/fa";
 import SectionTiltle from "../../Components/SectionTiltle";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
+import useAuth from "../../Hooks/useAuth";
 
 const MyAsset = () => {
     const axiosSecure = useAxiosSecure()
+    const {user} = useAuth()
+    const currUser = user.email
 
     const { data: assets = [], refetch } = useQuery({
         queryKey: ['all--asset'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/assets-request')
+            const res = await axiosSecure.get(`/assets-request-filter?email=${currUser}`)
             console.log(res.data);
             return res.data;
         },
     });
     refetch()
+
+
+    const handleAproved = async (_id) => {
+
+        const res = await axiosSecure.put(`/myassets-update/${_id}`)
+        console.log(res.data);
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: " Profile Updadeted successfully",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        refetch()
+
+    };
+
+    const habdleDelete = (_id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/assets-request-delete/${_id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your Team Mwmbwe has been deleted.",
+                                icon: "success"
+                            });
+                            refetch()
+                        }
+                    })
+            }
+        });
+    }
+
 
 
 
@@ -78,15 +126,28 @@ const MyAsset = () => {
                             <td className="px-4 md:text-[16px] py-4 text-center">
                                 {asset?.status === 'pending' && (
                                     <button
-                                    className="text-white hover:text-red-500 600 btn hover:font-semibold text-[16px]  btn-md hover:bg-[#ffffffdb] bg-[#ff5555db] rounded-full py-2"
+                                        onClick={() => habdleDelete(asset?._id)}
+                                        className="text-white hover:text-red-500 600 btn hover:font-semibold text-[16px]  btn-md hover:bg-[#ffffffdb] bg-[#ff5555db] rounded-full py-2"
                                     // onClick={() => handleCancelRequest()}
                                     >
                                         Cancel
                                     </button>
                                 )}
 
+                                {asset?.status === 'returned ⏎' && (
+                                    <button
+                                        disabled
+                                        className="text-white hover:text-green-600 btn hover:font-semibold text-[16px]  btn-md hover:bg-[#ffffffdb] bg-[#23611b] rounded-full py-2 disabled:bg-gray-400 disabled:cursor-not-allowed"
+                                    // onClick={() => handleReturn()}
+                                    // disabled={asset?.status === 'Returnable'}
+                                    >
+                                        Return
+                                    </button>
+                                )}
+
                                 {asset?.status === 'Approved ✔️' && asset?.assetType === 'Returnable' && (
                                     <button
+                                        onClick={() => handleAproved(asset?._id)}
                                         className="text-white hover:text-green-600 btn hover:font-semibold text-[16px]  btn-md hover:bg-[#ffffffdb] bg-[#23611b] rounded-full py-2"
                                     // onClick={() => handleReturn()}
                                     // disabled={asset?.status === 'Returnable'}

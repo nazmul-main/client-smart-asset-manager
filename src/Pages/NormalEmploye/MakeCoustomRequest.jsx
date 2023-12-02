@@ -1,8 +1,11 @@
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import useAuth from "../../Hooks/useAuth";
 
 const MakeCoustomRequest = () => {
     const axiosPublic = useAxiosPublic()
+    const {user} = useAuth()
+    const currentUser  = user?.email
 
     const Status = 'Pending'
     /* Find Current date */
@@ -27,7 +30,7 @@ const MakeCoustomRequest = () => {
         const assetImage = form.assetImage.value;
         const whyNeed = form.whyNeed.value;
         const additionalInfo = form.additionalInfo.value;
-        console.log(assetName,  additionalInfo, assetType, assetImage, whyNeed, price);
+        console.log(assetName, additionalInfo, assetType, assetImage, whyNeed, price);
 
         const rqpAsset = {
             assetName: assetName,
@@ -37,27 +40,28 @@ const MakeCoustomRequest = () => {
             assetImage: assetImage,
             whyNeed: whyNeed,
             currentDate: currentDate,
-            Status: Status
+            Status: Status,
+            emailRequester:  currentUser
         };
 
         console.log(rqpAsset);
 
         //  Send to Backend
-         axiosPublic.post('/coustom-assets', rqpAsset, )
-         .then(res => {
-             if (res?.data?.insertedId) {
-                 Swal.fire({
-                     icon: 'success',
-                     title: 'Well done',
-                     text: 'Your application was successful',
-                     footer: '<a href="">Thank you</a>'
-                 });
-             }
-             console.log(res.data);
-         })
-         .catch(error => {
-             console.log(error);
-         });
+        axiosPublic.post('/coustom-assets', rqpAsset,)
+            .then(res => {
+                if (res?.data?.insertedId) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Well done',
+                        text: 'Your application was successful',
+                        footer: '<a href="">Thank you</a>'
+                    });
+                }
+                console.log(res.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
 
     }
 
@@ -77,7 +81,7 @@ const MakeCoustomRequest = () => {
 
                         <div className="mb-4 w-full">
                             <label className="block text-sm font-medium text-gray-600">Price</label>
-                            <input   type="text" id="price" name="price" className="mt-1 p-2 w-full border rounded-md" />
+                            <input type="text" id="price" name="price" className="mt-1 p-2 w-full border rounded-md" />
                         </div>
                     </div>
 
@@ -86,14 +90,9 @@ const MakeCoustomRequest = () => {
                             <label className="block text-sm font-medium text-gray-600">Asset Type</label>
                             <select value={'defaulvalue'} id="assetType" name="assetType" className="mt-1 p-2 w-full border rounded-md">
                                 <option selected>Choose a Type</option>
-                                <option value="Electronic">Electronic </option>
-                                <option value="Furniture">Furniture</option>
-                                <option value="IT Equipment">IT Equipment</option>
-                                <option value="Office Supplies">Office Supplies</option>
-                                <option value="Surveillance">Surveillance</option>
-                                <option value="Safety Equipment">Safety Equipment</option>
-                                <option value="Communication Equipment">Communication Equipment</option>
-                                <option value="Power Supplies">Power Supplies</option>
+                                <option value="Returnable">Returnable </option>
+                                <option value=" Non-returnable">Non-returnable </option>
+
                             </select>
                         </div>
 

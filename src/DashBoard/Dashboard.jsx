@@ -16,7 +16,7 @@ const Dashboard = () => {
     return (
         <div className="flex max-w-screen mx-auto px-4 gap ">
             {/* dashboard side bar */}
-            <div className="w-2/12 min-h-screen bg-[#286d32]">
+            <div className=" w-2/12 min-h-screen bg-[#286d32]">
                 <ul className="menu p-4">
                     {
                         isAdmin ? <>
@@ -126,7 +126,7 @@ const Dashboard = () => {
                 </ul>
 
             </div>
-            <div className="w-10/12 bg-gray-50">
+            <div  className=" w-10/12 bg-gray-50">
                 <Outlet></Outlet>
             </div>
         </div>
