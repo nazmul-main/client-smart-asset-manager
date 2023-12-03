@@ -1,29 +1,24 @@
 /* eslint-disable react/prop-types */
+
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 
+
+
 const PrivateRoute = ({ children }) => {
-
-    const {user, loading} = useAuth();
-   const location = useLocation()
-//    console.log(location.pathname);
-//    console.log(loading);
+    const { user, loading } = useAuth()
+    const location = useLocation();
 
 
-
-    /* wait / lodder */
-    if(loading) return <h1 className="text-5xl text-center h-[40vh]">Loading ,,,,</h1>
-
+    if (loading) {
+        return <div className=" flex items-center justify-center min-h-screen">
+            <h2 className="md:text-4xl py-24 text-orange-700 ">Loading...</h2></div>
+    }
     if (user) {
-        return children
+        return (children)
+    } else {
+        return <Navigate to='/signin' state={{from: location}}></Navigate>
     }
-    
-    /* __________ */
-
-    if(!user?.email) {
-        return <Navigate state={location.pathname} to='/signin'></Navigate>
-    }
-
 };
 
 export default PrivateRoute;

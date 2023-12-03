@@ -1,11 +1,13 @@
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
+import useAuth from "../Hooks/useAuth";
 // import useAdmin from "../Hooks/useAdmin";
 
 
 
 const Dashboard = () => {
     //   const  isAdmin = true;
+    const {logout} = useAuth()
 
     const [isAdmin, isLoading] = useAdmin();
     if(isLoading){
@@ -115,18 +117,15 @@ const Dashboard = () => {
                             Home</NavLink>
                     </li>
                     
+                    
                     <li>
-                        <NavLink className='text-white font-semibold ' to={"/contact"}>
-                            Contact</NavLink>
-                    </li>
-                    <li>
-                        <NavLink className='text-white font-semibold ' to={"/logOut"}>
+                        <NavLink to='/'  onClick={logout} className='text-white font-semibold ' >
                             Logout</NavLink>
                     </li>
                 </ul>
 
             </div>
-            <div  className=" w-10/12 bg-gray-50">
+            <div  className=" w-10/12 min-h-screen bg-gray-50">
                 <Outlet></Outlet>
             </div>
         </div>

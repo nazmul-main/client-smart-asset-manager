@@ -29,7 +29,7 @@
 //         console.log(updatedAsset);
 
 
-//         fetch(`http://localhost:5001/api/v1/assets/update-assets-done/${assetdData?._id}`, {
+//         fetch(`https://server-smart-asset-manager.vercel.app/api/v1/assets/update-assets-done/${assetdData?._id}`, {
 //             method: 'PUT',
 //             headers: {
 //                 'Content-Type': 'application/json',

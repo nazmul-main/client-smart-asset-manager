@@ -3,6 +3,7 @@ import SectionTiltle from "../../Components/SectionTiltle";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 
 const AllRequest = () => {
@@ -89,6 +90,9 @@ const AllRequest = () => {
     return (
         <div>
             <SectionTiltle subHeading={'-----requested list-----'} heading={' All Request'} />
+            <Helmet>
+                <title>Admin | All Request</title>
+            </Helmet>
             <div className="max-w-screen-xl mx-auto px-4 my-12 min-h-screen">
                 <div>
                     <div>

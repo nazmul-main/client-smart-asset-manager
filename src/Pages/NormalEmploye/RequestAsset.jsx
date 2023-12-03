@@ -4,6 +4,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAuth from "../../Hooks/useAuth";
 import RequestedModal from "./RequestedModal";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const RequestAsset = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -115,6 +116,9 @@ const RequestAsset = () => {
                 subHeading={'---Check it out---'}
                 heading={'Request an Asset'}
             ></SectionTiltle>
+            <Helmet>
+                <title>Employe | Request Asset</title>
+            </Helmet>
             {/* Search, Filter, and Sort Section */}
             <div className="my-5">
                 <form className="flex flex-col md:flex-row gap-3 w-1/2 mx-auto">
@@ -142,7 +146,7 @@ const RequestAsset = () => {
                     >
                         <option value="All">All Type</option>
                         <option value="Returnable">Returnable</option>
-                        <option value="Non-returnable"> Non-returnable</option>
+                        <option value="Non-returnable">Non-returnable</option>
                     </select>
                 </form>
             </div>
@@ -210,7 +214,7 @@ const RequestAsset = () => {
                         ))}
                     </tbody>
                 </table>
-                {item && <RequestedModal asset={item} isOpen={isModalOpen} closeModal={closeModal} refetch={refetch} />}
+                {item && <RequestedModal yourAdmin={yourAdmin} asset={item} isOpen={isModalOpen} closeModal={closeModal} refetch={refetch} />}
             </div>
 
         </div>

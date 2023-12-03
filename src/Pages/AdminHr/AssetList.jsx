@@ -8,6 +8,7 @@ import ModalAssetUpdate from "./ModalAssetUpdaate";
 import SectionTiltle from "../../Components/SectionTiltle";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const AssetList = () => {
     const [item ,setItem] = useState(' ') 
@@ -115,7 +116,7 @@ const AssetList = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosPublic.delete(`http://localhost:5001/api/v1/assets/${id}`)
+                axiosPublic.delete(`https://server-smart-asset-manager.vercel.app/api/v1/assets/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             Swal.fire({
@@ -139,7 +140,9 @@ const AssetList = () => {
 
     return (
         <div className="relative overflow-x-auto shadow-md sm:rounded-MD mx-8 my-12 ">
-            {/* title */}
+           <Helmet>
+                <title> Admin | Asset List</title>
+            </Helmet>
             <SectionTiltle subHeading={'SEE TOUR ALL ASSET'} heading={'ASSET LIST'} />
 
 

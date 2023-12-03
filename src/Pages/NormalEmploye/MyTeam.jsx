@@ -3,6 +3,7 @@ import SectionTiltle from "../../Components/SectionTiltle";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAuth from "../../Hooks/useAuth";
 import UpcommingEvents from "./UpcommingEvents";
+import { Helmet } from "react-helmet-async";
 
 const MyTeam = () => {
   const axiospublic = useAxiosPublic();
@@ -54,6 +55,9 @@ const MyTeam = () => {
         {/* My team */}
         <section className="row-span-">
           <SectionTiltle subHeading={"All of my team member -"} />
+          <Helmet>
+            <title>Employe | My Team</title>
+          </Helmet>
 
           <div className="md:grid-cols-1   lg:grid-cols-1 grid gap-10  " >
             {

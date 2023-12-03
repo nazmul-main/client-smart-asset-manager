@@ -4,6 +4,7 @@ import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import useAuth from "../../Hooks/useAuth";
 import { useForm } from "react-hook-form";  // Import react-hook-form
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const JoinAsARAdmin = () => {
     const axiosPublic = useAxiosPublic();
@@ -34,7 +35,7 @@ const JoinAsARAdmin = () => {
                     bithdayDate: data.bod,
                     email: data.email,
                     CoLogo: data.CoLogo,
-                    package:data.package
+                    package: data.package
 
                 }
                 console.log(userInfo);
@@ -59,6 +60,9 @@ const JoinAsARAdmin = () => {
         <div>
             <section className="bg-gray-200 ">
                 <div className=" flex flex-col  items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+                    <Helmet>
+                        <title>Join As Admin </title>
+                    </Helmet>
                     <Link to='/' className=" my-2 py-2 px-3 rounded-md bg-green-500">Back To Home </Link>
                     <div className="md:w-1/2  rounded-lg shadow dark:border md:mt-0  xl:p-0 bg-blue-50 ">
                         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

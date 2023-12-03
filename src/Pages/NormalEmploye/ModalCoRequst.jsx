@@ -40,7 +40,7 @@ const ModalCoRequst = ({ isOpen, closeModal, asset, refetch }) => {
         console.log(rqpAsset);
 
 
-        fetch(`http://localhost:5001/api/v1/coustom-assets/${_id}`, {
+        fetch(`https://server-smart-asset-manager.vercel.app/api/v1/coustom-assets/${_id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

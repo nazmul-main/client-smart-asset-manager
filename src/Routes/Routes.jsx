@@ -30,6 +30,8 @@ export const router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout></MainLayout>,
+        errorElement: <div className=" flex items-center justify-center min-h-screen">
+            <img className="w-1/3" src="https://i.ibb.co/ypK7Sfq/undraw-Page-not-found-re-e9o6.png" alt="" /></div>,
         children: [
             {
                 path: '/',
@@ -74,7 +76,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: 'employeHome',
-                element: <EmployeHome></EmployeHome>
+                element: <PrivateRoute><EmployeHome></EmployeHome></PrivateRoute>
             },
 
             {
@@ -118,7 +120,7 @@ export const router = createBrowserRouter([
             // {
             //     path: 'update-assets/:id',
             //     element: <AsssetUpdateFrom></AsssetUpdateFrom>,
-            //     loader: ({ params }) => fetch(`http://localhost:5001/api/v1/assets/update-assets/${params.id}`)
+            //     loader: ({ params }) => fetch(`https://server-smart-asset-manager.vercel.app/api/v1/assets/update-assets/${params.id}`)
             // },
             {
                 path: 'addanAsset',

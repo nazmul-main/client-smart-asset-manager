@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import { useForm } from "react-hook-form";  // Import react-hook-form
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const JoinAsEmploye = () => {
 
@@ -38,7 +39,7 @@ const JoinAsEmploye = () => {
                     name: data.name,
                     bithdayDate: data.bod,
                     email: data.email,
-                    image:data.photo,
+                    image: data.photo,
                     role: role
                 }
                 console.log(userInfo);
@@ -53,7 +54,7 @@ const JoinAsEmploye = () => {
                                 showConfirmButton: false,
                                 timer: 1500
                             });
-                            navigate('/dashboard')
+                            navigate('/dashboard/employeHome')
                         }
                     });
             });
@@ -63,6 +64,9 @@ const JoinAsEmploye = () => {
     return (
         <div>
             <section className="bg-gray-200 pt-8 max-h-screen ">
+                <Helmet>
+                    <title>Join As Employe </title>
+                </Helmet>
                 <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                     <Link to='/' className=" my-4 py-2 px-3 rounded-md bg-green-500">Back To Home </Link>
 

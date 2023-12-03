@@ -31,7 +31,7 @@ const UpdateModal = ({ isOpen, closeModal, yours, refetch }) => {
         };
 
 
-        fetch(`http://localhost:5001/api/v1/all-users-update/${_id}`, {
+        fetch(`https://server-smart-asset-manager.vercel.app/api/v1/all-users-update/${_id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 // const imag_hosting_key = import.meta.env.VITE_IMAAGE_HOSTIMG_KEY
 // const imag_hosting_API = `https://api.imgbb.com/1/upload?key=${imag_hosting_key}`
@@ -82,6 +83,9 @@ const AddAnAsset = () => {
 
     return (
         <div className="flex items-center justify-center h-screen">
+             <Helmet>
+                <title>Admin | Add Asset</title>
+            </Helmet>
             <div className="max-w-screen-xl md:w-1/2 mx-auto px-4 md:px-8 py-8 md:12 bg-[#a4da98]   ">
                 <form onSubmit={handleSubmit(onSubmit)} className=' px-4 md:px-12 py-4 bg-gray-200 ' >
                     <div>

@@ -5,14 +5,16 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-const RequestedModal = ({ isOpen, closeModal, asset }) => {
+const RequestedModal = ({ isOpen, closeModal, asset, yourAdmin }) => {
     const { user } = useAuth()
     const axiosPublic = useAxiosPublic()
     const navigate = useNavigate()
+    console.log(yourAdmin);
+
 
     const requesterEamil = user?.email;
     const requesterName = user?.displayName;
-    const { name, type, image } = asset;
+    const { name, type, image, _id } = asset;
     const currentDate = moment().format('YYYY-MM-DD');
     const status = 'pending';
 
@@ -38,7 +40,9 @@ const RequestedModal = ({ isOpen, closeModal, asset }) => {
             additionalnote: note,
             assetType: type,
             status: status,
-            userInfo: user
+            userInfo: user,
+            adminEmail:yourAdmin,
+            assetId: _id,
         }
         console.log(reqInfo);
 

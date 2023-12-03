@@ -4,6 +4,7 @@ import useAuth from "../../Hooks/useAuth";
 import { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import UpdateModal from "../../Components/Profile/UpdateModal ";
+import { Helmet } from "react-helmet-async";
 
 const AdminHrProfile = () => {
 
@@ -32,6 +33,9 @@ const AdminHrProfile = () => {
     });
     return (
         <div className="flex justify-center items-center min-h-screen">
+             <Helmet>
+                <title>Admin | Profile</title>
+            </Helmet>
             <div>
                 <div className="  flex gap-12 justify-center items-center  p-6 shadow-2xl shadow-[#296835] rounded-xl sm:px-12 bg-[#ecfdef5e] space-y-10">
                     <img src="https://source.unsplash.com/150x150/?portrait?3" alt="" className="md:w-52 md:h-52 h-32 w-32 shadow-gray-700 ck shadow-md mx-auto rounded-full " />

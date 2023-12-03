@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import SectionTiltle from "../../Components/SectionTiltle";
 import useAuth from "../../Hooks/useAuth";
 import TeamList from "./TeamList";
+import { Helmet } from "react-helmet-async";
 
 
 const MyEmployeeList = () => {
@@ -25,10 +26,16 @@ const MyEmployeeList = () => {
     }
 
 
+    
+
+
 
 
     return (
         <div className="max-w-screen-xl px-4 md:px-12">
+             <Helmet>
+                <title>Admin | Employe List</title>
+            </Helmet>
             <SectionTiltle
                 subHeading={'This is your employee'}
                 heading={'my employee list'}

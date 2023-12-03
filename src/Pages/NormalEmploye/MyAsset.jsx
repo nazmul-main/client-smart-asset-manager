@@ -1,30 +1,44 @@
 
 import { FaPrint } from "react-icons/fa";
 import SectionTiltle from "../../Components/SectionTiltle";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
+import { useState } from "react";
+import { Helmet } from "react-helmet-async";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const MyAsset = () => {
-    const axiosSecure = useAxiosSecure()
-    const {user} = useAuth()
+    const axiosPublic = useAxiosPublic()
+    const { user } = useAuth()
     const currUser = user.email
+    const [searchQuery, setSearchQuery] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('All');
+
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
+    };
+
+    const handleCategoryChange = (e) => {
+        setSelectedCategory(e.target.value);
+    };
+
 
     const { data: assets = [], refetch } = useQuery({
-        queryKey: ['all--asset'],
+        queryKey: ['my-asset'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/assets-request-filter?email=${currUser}`)
+            const res = await axiosPublic.get(`/assets-request-filter?email=${currUser}`);
             console.log(res.data);
             return res.data;
         },
     });
+
     refetch()
 
 
     const handleAproved = async (_id) => {
 
-        const res = await axiosSecure.put(`/myassets-update/${_id}`)
+        const res = await axiosPublic.put(`/myassets-update/${_id}`)
         console.log(res.data);
         Swal.fire({
             position: "center",
@@ -48,8 +62,8 @@ const MyAsset = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.delete(`/assets-request-delete/${_id}`)
-                    .then(res => {
+                axiosPublic.delete(`/assets-request-delete/${_id}`)
+                .then(res => {
                         if (res.data.deletedCount > 0) {
 
                             Swal.fire({
@@ -67,9 +81,76 @@ const MyAsset = () => {
 
 
 
+    const filterAndSortAssets = (assets) => {
+        // Filter by search query
+        let filteredAssets = assets.filter((asset) =>
+            asset.assetName && asset.assetName.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
+        // Filter by category
+        if (selectedCategory && selectedCategory !== 'All') {
+            filteredAssets = filteredAssets.filter((asset) => asset.assetType
+                === selectedCategory);
+        }
+
+        // Sort by quantity
+
+        console.log(filteredAssets); // Log the filtered assets
+
+        return filteredAssets;
+    };
+
+
+
+    const filteredAndSortedAssets = filterAndSortAssets(assets);
+    console.log(filteredAndSortedAssets);
+
+    /*  ----------------------------------------------------------------
+                
+    ---------------------------------------------------------------- */
+
+
+
+
+
     return (
         <div className="max-w-screen-xl px-4 md:px-12 mx-auto">
             <SectionTiltle subHeading={'All of my  assets'} heading={'MY ASSET'} />
+            <Helmet>
+                <title>Employe | My asset</title>
+            </Helmet>
+            {/* Search, Filter, and Sort Section */}
+            <div className="my-5">
+                <form className="flex flex-col md:flex-row gap-3 w-1/2 mx-auto">
+                    <div className="flex">
+                        <input
+                            type="text"
+                            placeholder="Search for the tool you like"
+                            className="w-full md:w-80 px-3 h-10 rounded-l border-2 border-[#286d39] focus:outline-none focus:border-[#286d39]"
+                            value={searchQuery}
+                            onChange={handleSearchChange}
+                        />
+                        <button
+                            type="submit"
+                            className="bg-[#286d39] text-white rounded-r px-2 md:px-3 py-0 md:py-1"
+                        >
+                            Search
+                        </button>
+                    </div>
+                    <select
+                        id="pricingType"
+                        name="pricingType"
+                        className="w-full h-10 border-2 border-[#286d39] focus:outline-none focus:border-[#286d39] text-[#286d39] rounded px-2 md:px-3 py-0 md:py-1 tracking-wider"
+                        value={selectedCategory}
+                        onChange={handleCategoryChange}
+                    >
+                        <option value="All">All Type</option>
+                        <option value="Returnable">Returnable</option>
+                        <option value="Non-returnable">Non-returnable</option>
+                    </select>
+                </form>
+            </div>
+
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
                 <thead className="text-xs text-gray-700 uppercase bg-green-200 ">
                     <tr>
@@ -99,7 +180,7 @@ const MyAsset = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {assets?.map((asset, index) => (
+                    {filteredAndSortedAssets?.map((asset, index) => (
                         <tr key={asset?._id} className="odd:bg-gray-100 even:bg-white   ">
                             <td className="w-1/12 py-2 text-center ">{index + 1}</td>
                             <td className="px-4 md:text-[16px]  py-4  text-center font-medium text-gray-900 whitespace-nowrap ">

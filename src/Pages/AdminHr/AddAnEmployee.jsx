@@ -6,6 +6,7 @@ import useAuth from "../../Hooks/useAuth";
 import Packages from "../../Shared/Packages";
 import Alluser from "./Alluser";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const AddAnEmployee = () => {
     const axiosSecure = useAxiosSecure();
@@ -41,6 +42,9 @@ const AddAnEmployee = () => {
 
     return (
         <div className="md:w-10/12 mx-auto">
+             <Helmet>
+                <title>Admin | Add  Employe</title>
+            </Helmet>
             <div >
                 <div >
                     <SectionTiltle

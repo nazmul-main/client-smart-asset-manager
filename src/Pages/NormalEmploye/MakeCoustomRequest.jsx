@@ -1,11 +1,13 @@
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAuth from "../../Hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 const MakeCoustomRequest = () => {
     const axiosPublic = useAxiosPublic()
-    const {user} = useAuth()
-    const currentUser  = user?.email
+    const { user } = useAuth()
+    const currentUser = user?.email
 
     const Status = 'Pending'
     /* Find Current date */
@@ -19,9 +21,27 @@ const MakeCoustomRequest = () => {
     const currentDate = `${day}-${month}-${lastTwoDigits}`;
     console.log(currentDate);
 
+    const { data: adminEmail = [], } = useQuery({
+        queryKey: ['coReqList'],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/add-team-one?email=${currentUser}`);
+            return res.data;
+        }
+    })
+
+    const adminEmailId = adminEmail?.adminEmail
+    console.log(adminEmailId);
+
 
 
     const handleCustomRequest = (e) => {
+
+
+
+
+
+
+
         e.preventDefault();
         const form = e.target;
         const assetName = form.assetName.value;
@@ -32,6 +52,10 @@ const MakeCoustomRequest = () => {
         const additionalInfo = form.additionalInfo.value;
         console.log(assetName, additionalInfo, assetType, assetImage, whyNeed, price);
 
+
+
+
+
         const rqpAsset = {
             assetName: assetName,
             assetType: assetType,
@@ -41,7 +65,8 @@ const MakeCoustomRequest = () => {
             whyNeed: whyNeed,
             currentDate: currentDate,
             Status: Status,
-            emailRequester:currentUser
+            emailRequester: currentUser,
+            adminEmail: adminEmailId
         };
 
         console.log(rqpAsset);
@@ -67,6 +92,9 @@ const MakeCoustomRequest = () => {
 
     return (
         <div className="bg-gray-200 min-h-screen flex items-center justify-center">
+             <Helmet>
+                <title>Employe | Coustom Asset Re</title>
+            </Helmet>
             <div className="bg-white p-8 rounded-lg shadow-md ">
 
                 <h2 className="text-2xl font-semibold mb-6 text-center"> Custom Asset Request</h2>
@@ -88,8 +116,8 @@ const MakeCoustomRequest = () => {
                     <div className="md:flex gap-4">
                         <div className="mb-4 w-full">
                             <label className="block text-sm font-medium text-gray-600">Asset Type</label>
-                            <select value={'defaulvalue'} id="assetType" name="assetType" className="mt-1 p-2 w-full border rounded-md">
-                                <option selected>Choose a Type</option>
+                            <select  id="assetType" name="assetType" className="mt-1 p-2 w-full border rounded-md">
+                                <option >Choose a Type</option>
                                 <option value="Returnable">Returnable </option>
                                 <option value=" Non-returnable">Non-returnable </option>
 

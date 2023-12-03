@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+
 
 const AdminHr = () => {
     return (
@@ -16,9 +16,9 @@ const AdminHr = () => {
                 </div>
 
                 {/* dashboard content */}
-                <div className="w-10/12 bg-gray-50">
+                {/* <div className="w-10/12 bg-gray-50">
                     <Outlet></Outlet>
-                </div>
+                </div> */}
             </div>
         </div>
     );
