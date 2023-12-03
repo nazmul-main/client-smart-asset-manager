@@ -30,6 +30,9 @@ const Navbar = () => {
         </li>
     </>
 
+
+
+
     // const adminLinks = (
     //     <>
     //         <li>
@@ -111,7 +114,7 @@ const Navbar = () => {
 
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                    <img className="w-20"  src="https://i.ibb.co/j8dHRDf/469536-18040461-3285842-cd615a0a-image-1-removebg-preview.png" alt="" />
                 </div>
                 <div className="navbar-center hidden lg:flex z-50">
                     <ul className="menu menu-horizontal px-1">

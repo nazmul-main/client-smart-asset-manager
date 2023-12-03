@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet-async";
 const MyEmployeeList = () => {
 
     const { user } = useAuth()
-    const wishlistapi = `http://localhost:5001/api/v1/add-team?email=${user?.email}`
+    const wishlistapi = `https://server-smart-asset-manager.vercel.app/api/v1/add-team?email=${user?.email}`
 
     const wishlistItem = async () => {
         try {

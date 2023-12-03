@@ -2,7 +2,7 @@
 
 const Packages = () => {
     return (
-        <div className="max-w-screen-xl mx-auto grid   grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-12">
+        <div className="max-w-screen-xl mx-auto grid  px-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-12">
 
             {/* Package 1 */}
             <div className="w-full  p-4  border  rounded-lg shadow sm:p-8  ">
@@ -18,8 +18,8 @@ const Packages = () => {
                         </svg>
                         <span className="text-base font-normal leading-tight  ms-3">5 team members</span>
                     </li>
-                    
-                    
+
+
                 </ul>
                 <button type="button" className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Choose plan</button>
             </div>
@@ -37,8 +37,8 @@ const Packages = () => {
                         </svg>
                         <span className="text-base font-normal leading-tight  ms-3">10 team members</span>
                     </li>
-                    
-                    
+
+
                 </ul>
                 <button type="button" className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Choose plan</button>
             </div>
@@ -56,8 +56,8 @@ const Packages = () => {
                         </svg>
                         <span className="text-base font-normal leading-tight  ms-3">20 team members</span>
                     </li>
-                    
-                    
+
+
                 </ul>
                 <button type="button" className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Choose plan</button>
             </div>
