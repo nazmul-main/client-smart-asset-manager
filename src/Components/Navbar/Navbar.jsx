@@ -103,8 +103,8 @@ const Navbar = () => {
 
 
     return (
-        <div className="max-w-screen-xl mx-auto">
-            <div className="navbar fixed z-10 bg-opacity-50 bg-black  max-w-screen-xl">
+        <div className="max-w-screen-xl  md:mx-auto ">
+            <div className="navbar fixed z-10 bg-opacity-50 bg-black mx-auto px-5   max-w-screen-xl">
                 <div className="navbar-start">
                     <div className="dropdown ">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -134,11 +134,11 @@ const Navbar = () => {
                             </ul>
                         }
                     </div>
-                    <img className="w-20 h-20" src="https://i.ibb.co/j8dHRDf/469536-18040461-3285842-cd615a0a-image-1-removebg-preview.png" alt="" />
+                    <img className="w-12 " src="https://i.ibb.co/j8dHRDf/469536-18040461-3285842-cd615a0a-image-1-removebg-preview.png" alt="" />
                 </div>
                 <div className="navbar-center hidden lg:flex z-50">
                     {
-                        !user?.email ? <ul className="menu menu-horizontal px-1">
+                        !user?.email ? <ul className="menu menu-horizontal ">
                             <li><NavLink to='/' className={({ isActive, isPending }) =>
                                 isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}> HOME</NavLink>
                             </li>
@@ -150,7 +150,7 @@ const Navbar = () => {
                             </li>
                         </ul>
                             :
-                            <ul className="menu menu-horizontal px-1">
+                            <ul className="menu menu-horizontal ">
                                 <li><NavLink to='/' className={({ isActive, isPending }) =>
                                     isPending ? "pending" : isActive ? "text-[#2b914a] font-semibold " : "hover:text-[#2b914a] font-semibold text-[#FFF]"}> HOME</NavLink>
                                 </li>
@@ -166,9 +166,9 @@ const Navbar = () => {
                         user ? <>
                             <span className=" rounded-l-full px-2 py-1 bg-green-50 text-green-600 font-semibold ">{user?.displayName}</span>
                             <img className="w-9 rounded-full ml-4 h-9" src={user.photoURL ? user.photoURL : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhyhj1gUUYu1c8817GfPwApJbYzW9lJdjSXQ&usqp=CAU"} alt={user.displayName} />
-                            <button onClick={handlelogOut} className="btn btn-sm ml-4 bg-[#2b914a]">Sign Out</button>
+                            <button onClick={handlelogOut} className="btn btn-sm text-[12px] bg-[#2b914a]">Sign Out</button>
                         </> : <>
-                            <Link to='/signin' className="btn btn-sm ml-4 bg-[#2b914a]">SignIn</Link></>
+                            <Link to='/signin' className="btn btn-sm  text-[12px] bg-[#2b914a]">SignIn</Link></>
                     }
 
                 </div>
