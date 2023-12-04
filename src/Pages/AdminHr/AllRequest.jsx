@@ -4,9 +4,14 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import moment from "moment";
 
 
 const AllRequest = () => {
+
+    const aprovedDate = moment().format('YYYY-MM-DD');
+    console.log(aprovedDate);
+
 
     const [searchQuery, setSearchQuery] = useState("");
     const axiosSecure = useAxiosSecure()
@@ -52,7 +57,6 @@ const AllRequest = () => {
 
 
     const handleAproved = async (_id) => {
-
         const res = await axiosSecure.put(`/assets-request-update/${_id}`)
         console.log(res.data);
         Swal.fire({

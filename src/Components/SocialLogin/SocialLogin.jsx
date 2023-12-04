@@ -33,7 +33,7 @@ const SocialLogin = () => {
                                 timer: 1500
                             });
                         }
-                        navigate('/dashboard')
+                        navigate('/')
                     });
             })
 
