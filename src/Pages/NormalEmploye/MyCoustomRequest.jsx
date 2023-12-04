@@ -34,7 +34,7 @@ const MyCoustomRequest = () => {
 
 
             {recentAssets && recentAssets.length > 0 && (
-                <div className="grid grid-cols-2  gap-5 items-center justify-center">
+                <div className="grid grid-cols-4  gap-5 items-center justify-center">
                     {recentAssets.map((asset) => (
                         <ReqCart key={asset._id} asset={asset} refetch={refetch}></ReqCart>
                     ))}

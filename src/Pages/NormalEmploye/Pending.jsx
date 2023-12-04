@@ -48,7 +48,7 @@ const Pending = () => {
                 </thead>
                 <tbody>
                     {recentAssets.map((asset, index) => (
-                        <tr key={asset._id} className="odd:bg-gray-100 even:bg-white   ">
+                        <tr key={asset._id} className="even:bg-green-100 odd:bg-white   ">
                             <td className="w-1/12 py-2 text-center ">{index + 1}</td>
                             <td className="w-1/12 py-2 text-center ">
                                 <img className="w-14 h-14" src={asset?.assetImage} alt="" />

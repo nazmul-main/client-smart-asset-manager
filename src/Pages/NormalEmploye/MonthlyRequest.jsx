@@ -23,10 +23,10 @@ const MonthlyRequest = () => {
 
 
     return (
-        <div className="md:w-4/5 mx-auto px-4 my-12">
+        <div className="md:full mx-auto px-2 my-12">
             <SectionTiltle heading={'All Request'}></SectionTiltle>
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
-                <thead className="text-xs text-gray-700 uppercase bg-green-200 ">
+                <thead className="text-xs text-gray-700 uppercase bg-red-200 ">
                     <tr>
                         <th scope="col" className="px-4 py-3 text-center">
                             No
@@ -52,7 +52,7 @@ const MonthlyRequest = () => {
                 </thead>
                 <tbody>
                     {recentAssets.map((asset, index) => (
-                        <tr key={asset._id} className="odd:bg-gray-100 even:bg-white">
+                        <tr key={asset._id} className="even:bg-red-100 odd:bg-white">
                             <td className="w-1/12 py-2 text-center ">{index + 1}</td>
                             <td className="w-1/12 py-2 text-center ">
                                 <img className="w-14 h-14" src={asset?.assetImage} alt="" />
