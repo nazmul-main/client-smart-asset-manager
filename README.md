@@ -2,7 +2,7 @@
 
 ## Live Site
 
-Check out our live Asset Management System at [Your Live Site Link]( https://smart-asset-managment.web.app/).
+Check out our live Asset Management System at [ Live Site Link]( https://smart-asset-managment.web.app/).
 
 Welcome to our Asset Management System, a comprehensive solution designed for efficient asset tracking and management. This web application caters to the needs of both administrators/HR and employees, providing a user-friendly interface with a range of features and functionalities.
 
